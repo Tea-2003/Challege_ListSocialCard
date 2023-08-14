@@ -1,16 +1,9 @@
-import style from "./navStyle.module.css";
-import React, { useState } from "react";
+import React from "react";  
+import styles from './navStyle.module.css'
 
-const index = ({ activeTab }) => {
-  <div className={style.Navigation} >
-    <div className={style.btn}>Add New</div>
-    <div className={style.search}>
-      <input type="text" placeholder="Search Name..." />
-      <span>
-        <img src="./images/icon_search.svg" alt="" />
-      </span>
-    </div>
-  </div>;
+const Navigation = () => {
+    
+
 };
 
-export default index;
+export default Navigation;
