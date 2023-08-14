@@ -1,0 +1,43 @@
+.Cards {
+    padding-top: 78px;
+    display: flex;
+    gap: 30px;
+  }
+  .cradItem {
+    max-width: 310px;
+    padding: 30px;
+  }
+  .item {
+    display: flex;
+    padding-bottom: 15px;
+  }
+  .avata {
+    padding-right: 15px;
+  }
+  .name-date {}
+  .name {
+    color: #000;
+  
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .date {
+    color: #5b7083;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.5px;
+  }
+  .icon-ED {
+    display: flex;
+    gap: 17px;
+    padding-left: 121px;
+    cursor: pointer;
+  }
+  .sub-title {
+    padding-bottom: 15px;
+    color: #000;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+  }
