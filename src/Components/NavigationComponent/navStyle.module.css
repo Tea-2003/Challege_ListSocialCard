@@ -36,4 +36,5 @@
 }
 .search span img {
   padding: 13px;
+  cursor: pointer;
 }
