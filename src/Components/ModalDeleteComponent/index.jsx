@@ -13,7 +13,7 @@ const ModalDeleteComponent = () => {
       </div>
 
       <div className={styles.button}>
-        <div className={styles.btnSave}>Save</div>
+        <div className={styles.btnSave}>Delete</div>
         <div className={styles.btnCancel}>Cancel</div>
       </div>
     </div>

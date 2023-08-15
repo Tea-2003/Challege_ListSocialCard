@@ -1,0 +1,59 @@
+.card {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #d2cbcb;
+    border-radius: 10px;
+    padding: 50px 80px 161px 100px;
+}
+
+.title {
+    color: #000;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 27px;
+    font-family: Segoe UI, bold;
+    padding-bottom: 40px;
+}
+
+.avata {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.avt {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21px;
+}
+
+.nameDate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.name {
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.date {
+    color: #5b7083;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22.5px;
+}
+.subTitle{
+    padding-bottom: 15px;
+    color: #000;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+  }

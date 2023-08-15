@@ -6,7 +6,9 @@ import NavigationComponent from "./Components/NavigationComponent";
 import CardsComponent from "./Components/CardsComponent";
 import ResultComponent from "./Components/ResultComponent";
 import ModalAddComponent from "./Components/ModalAddComponent";
-import ModalDeleteComponent from "./Components/ModalDeleteComponent"
+import ModalDeleteComponent from "./Components/ModalDeleteComponent";
+import DetailComponent from "./Components/DetailComponent";
+
 function App() {
   return (
     
@@ -15,11 +17,12 @@ function App() {
         <div className="header">
           <div className="title">list social card</div>
         </div>
-        <NavigationComponent />
-        {/* <ModalAddComponent/> */}
-        <ModalDeleteComponent/>
-        {/* <CardsComponent />
-        <ResultComponent /> */}
+        {/* <NavigationComponent /> */}
+        {/* <ModalDeleteComponent/> */}
+        {/* <CardsComponent /> */}
+        {/* <ResultComponent /> */}
+
+        <DetailComponent/>
       </div>
     </Router>
   );
