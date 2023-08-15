@@ -1,8 +1,6 @@
 body {
   width: auto;
   height: auto;
-  /* font-family: "Segoe UI";
-  src: url("./segoe-ui-fonts/Segoe\ UI.ttf") format("truetype"); */
 }
 .container {
   max-width: 1106px;
@@ -20,9 +18,40 @@ body {
   line-height: 47px;
   text-transform: uppercase;
 }
-
-/* Nav */
-
-/* Cards */
-
-/* Result */
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 200;
+  src: local("Segoe UI Light");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 300;
+  src: local("Segoe UI Semilight");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 400;
+  src: local("Segoe UI");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 600;
+  src: local("Segoe UI Semibold");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 700;
+  src: local("Segoe UI Bold");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Segoe UI Italic");
+}
+@font-face {
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Segoe UI Bold Italic");
+}

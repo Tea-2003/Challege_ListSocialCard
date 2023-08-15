@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./navStyle.module.css";
 
 const NavigationComponent = () => {
+ 
   return (
     <div className={styles.navigation}>
       <div className={styles.btn}>Add New</div>
@@ -12,6 +13,7 @@ const NavigationComponent = () => {
         </span>
       </div>
     </div>
+
   );
 };
 

@@ -1,0 +1,85 @@
+.modal {
+  width: 514px;
+  color: #ffffff;
+  position: absolute;
+  margin: 145px 338px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #d2cbcb;
+  border-radius: 10px;
+}
+
+.title {
+  color: #000;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 27px;
+  font-family: Segoe UI, bold;
+  padding-top: 25px;
+}
+.form {
+  padding: 40px 45px;
+}
+.avata {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.avt {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.uploading {
+  padding-left: 46px;
+  width: 100%;
+}
+img {
+  cursor: pointer;
+}
+.uploading span {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  padding-left: 11px;
+}
+
+.uploading input {
+  padding: 9px 75px;
+  outline: none;
+  color: #ffffff;
+  border: 1px solid#D9D9D9;
+  border-radius: 5px;
+}
+.uploadingTextarea {
+  padding-left: 15px;
+  width: 100%;
+}
+textarea {
+  padding: 9px 74px;
+  color: #ffffff;
+  border: 1px solid#D9D9D9;
+  border-radius: 5px;
+}
+
+.button {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+.btnSave {
+  padding: 13px 24px;
+  background: #064ebc;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btnCancel {
+  padding: 13px 18px;
+  background: #d9d9d9;
+  border-radius: 10px;
+  cursor: pointer;
+}

@@ -5,17 +5,21 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import NavigationComponent from "./Components/NavigationComponent";
 import CardsComponent from "./Components/CardsComponent";
 import ResultComponent from "./Components/ResultComponent";
-
+import ModalAddComponent from "./Components/ModalAddComponent";
+import ModalDeleteComponent from "./Components/ModalDeleteComponent"
 function App() {
   return (
+    
     <Router>
       <div className="container">
         <div className="header">
           <div className="title">list social card</div>
         </div>
         <NavigationComponent />
-        <CardsComponent />
-        <ResultComponent />
+        {/* <ModalAddComponent/> */}
+        <ModalDeleteComponent/>
+        {/* <CardsComponent />
+        <ResultComponent /> */}
       </div>
     </Router>
   );

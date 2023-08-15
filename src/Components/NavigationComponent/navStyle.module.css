@@ -1,6 +1,6 @@
 .navigation {
   position: relative;
-  padding: 26px;
+  padding: 25px;
 }
 .btn {
   position: absolute;
@@ -27,8 +27,7 @@
 }
 .search input {
   width: 100%;
-  box-sizing: border-box;
-  color: #dfdfdf;
+  border-radius: 10px;
   font-size: 16px;
   padding: 13px 14px;
   border: 1px solid #fff;

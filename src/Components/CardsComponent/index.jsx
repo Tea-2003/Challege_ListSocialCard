@@ -10,7 +10,7 @@ const CardsComponent = () => {
             <img src="./images/avt_person.svg" alt="a" />
           </div>
           <div className={styles.nameDate}>
-            <div className={styles.name}>Berry</div>
+            <div className={styles.name}>Phu</div>
             <div className={styles.date}>14/07/2023</div>
           </div>
           <div className={styles.iconED}>
@@ -50,8 +50,8 @@ const CardsComponent = () => {
           </div>
         </div>
         <div className={styles.subTitle}>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout.
+          Lập một form để tạo mới 1 Social Card , trong card sẽ chứa các thông
+          tin: Avatar, Name, Description, Image
         </div>
         <div className={styles.images}>
           <img src="./images/img_baby.svg" alt="image" />
@@ -77,8 +77,8 @@ const CardsComponent = () => {
           </div>
         </div>
         <div className={styles.subTitle}>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout.
+          Next, you select one property. It doesn’t matter which one you choose,
+          yet it’s best to pick one that seems totally unrelated to your challenge.
         </div>
         <div className={styles.images}>
           <img src="./images/img_elephant.svg" alt="image" />
