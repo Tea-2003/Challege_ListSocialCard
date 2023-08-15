@@ -84,7 +84,6 @@ const CardsComponent = () => {
           <img src="./images/img_elephant.svg" alt="image" />
         </div>
       </div>
-
     </div>
   );
 };

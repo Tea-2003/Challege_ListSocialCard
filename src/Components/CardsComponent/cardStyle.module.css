@@ -1,42 +1,43 @@
 .cards {
-    padding-top: 30px;
-    display: flex;
-    /* gap: 30px; */
-  }
-  .cardItem {
-    max-width: 310px;
-    padding: 30px;
-  }
-  .item {
-    display: flex;
-    padding-bottom: 15px;
-  }
-  .avata {
-    padding-right: 15px;
-  }
-  .name {
-    color: #000;
-  
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 24px;
-  }
-  .date {
-    color: #5b7083;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 22.5px;
-  }
-  .iconED {
-    display: flex;
-    gap: 17px;
-    padding-left: 121px;
-    cursor: pointer;
-  }
-  .subTitle {
-    padding-bottom: 15px;
-    color: #000;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 20px;
-  }
+  padding-top: 30px;
+  display: flex;
+  /* gap: 30px; */
+  display: none;
+}
+.cardItem {
+  max-width: 310px;
+  padding: 30px;
+}
+.item {
+  display: flex;
+  padding-bottom: 15px;
+}
+.avata {
+  padding-right: 15px;
+}
+.name {
+  color: #000;
+
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.date {
+  color: #5b7083;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.5px;
+}
+.iconED {
+  display: flex;
+  gap: 17px;
+  padding-left: 121px;
+  cursor: pointer;
+}
+.subTitle {
+  padding-bottom: 15px;
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+}

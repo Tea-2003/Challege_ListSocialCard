@@ -12,10 +12,8 @@ function App() {
         <div className="title">list social card</div>
       </div>
       <NavigationComponent />
-
-      <CardsComponent/>
-      
-      <ResultComponent/>
+      <CardsComponent />
+      <ResultComponent />
     </div>
   );
 }

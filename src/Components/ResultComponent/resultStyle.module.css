@@ -1,18 +1,17 @@
-.noData{
-    text-align: center;
-  }
-  .noResult{
-    color: #064EBC;
-    font-size: 25px;
-    font-weight: 400;
-    line-height: 25px;
-    transform: uper;
-    padding: 10px 20px;
-  
-  }
-  .noContent{
-    color: #000;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 25px;
-  }
+.noData {
+  text-align: center;
+  padding: 30px;
+}
+.noResult {
+  color: #064ebc;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 25px;
+  padding: 10px 20px;
+}
+.noContent {
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+}
