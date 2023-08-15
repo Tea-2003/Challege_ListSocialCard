@@ -34,7 +34,7 @@ const CardsComponent = () => {
       <div className={styles.cardItem}>
         <div className={styles.item}>
           <div className={styles.avata}>
-            <img src="./images/avt_person.svg" alt="a" />
+            <img src="./images/avt_veren.svg" alt="a" />
           </div>
           <div className={styles.nameDate}>
             <div className={styles.name}>Varen</div>
@@ -61,7 +61,7 @@ const CardsComponent = () => {
       <div className={styles.cardItem}>
         <div className={styles.item}>
           <div className={styles.avata}>
-            <img src="./images/avt_person.svg" alt="a" />
+            <img src="./images/avt_mio.svg" alt="a" />
           </div>
           <div className={styles.nameDate}>
             <div className={styles.name}>Mio</div>
