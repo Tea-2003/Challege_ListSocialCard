@@ -1,189 +1,21 @@
 import React from "react";
 import "./App.css";
-import Navigation from './Components/Navigation_Component'
-
+import NavigationComponent from "./Components/NavigationComponent";
+import CardsComponent from "./Components/CardsComponent";
+import ResultComponent from "./Components/ResultComponent";
 
 function App() {
   return (
     <div className="container">
+      .
       <div className="header">
         <div className="title">list social card</div>
       </div>
-      <div className="navigation" >
-        <div className="btn">Add New</div>
-        <div className="search">
-          <input type="text" placeholder="Search Name..." />
-          <span>
-            <img src="images/icon_search.svg" alt="" />
-          </span>
-        </div>
+      <NavigationComponent />
 
-        <div className="cards">
-          <div className="crad-item">
-            <div className="item">
-              <div className="avata">
-                <img src="./images/avt_person.svg" alt="a" />
-              </div>
-              <div className="name-date">
-                <div className="name">Berry</div>
-                <div className="date">14/07/2023</div>
-              </div>
-              <div className="icon-ED">
-                <div className="icon-edit">
-                  <img src="./images/icon_edit.svg" alt="" />
-                </div>
-                <div className="icon-delete">
-                  <img src="./images/icon_delete.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            <div className="sub-title">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout.
-            </div>
-            <div className="image">
-              <img src="./images/img_cat.svg" alt="image" />
-            </div>
-          </div>
-
-          <div className="crad-item">
-            <div className="item">
-              <div className="avata">
-                <img src="./images/avt_veren.svg" alt="a" />
-              </div>
-              <div className="name-date">
-                <div className="name">Veren</div>
-                <div className="date">14/07/2023</div>
-              </div>
-              <div className="icon-ED">
-                <div className="icon-edit">
-                  <img src="./images/icon_edit.svg" alt="" />
-                </div>
-                <div className="icon-delete">
-                  <img src="./images/icon_delete.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            <div className="sub-title">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout.
-            </div>
-            <div className="image">
-              <img src="./images/img_baby.svg" alt="image" />
-            </div>
-          </div>
-
-          <div className="crad-item">
-            <div className="item">
-              <div className="avata">
-                <img src="./images/avt_mio.svg" alt="a" />
-              </div>
-              <div className="name-date">
-                <div className="name">Mio</div>
-                <div className="date">14/07/2023</div>
-              </div>
-              <div className="icon-ED">
-                <div className="icon-edit">
-                  <img src="./images/icon_edit.svg" alt="" />
-                </div>
-                <div className="icon-delete">
-                  <img src="./images/icon_delete.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            <div className="sub-title">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout.
-            </div>
-            <div className="image">
-              <img src="./images/img_elephant.svg" alt="image" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="cards">
-        <div className="crad-item">
-          <div className="item">
-            <div className="avata">
-              <img src="./images/avt_person.svg" alt="a" />
-            </div>
-            <div className="name-date">
-              <div className="name">Berry</div>
-              <div className="date">14/07/2023</div>
-            </div>
-            <div className="icon-ED">
-              <div className="icon-edit">
-                <img src="./images/icon_edit.svg" alt="" />
-              </div>
-              <div className="icon-delete">
-                <img src="./images/icon_delete.svg" alt="" />
-              </div>
-            </div>
-          </div>
-          <div className="sub-title">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.
-          </div>
-          <div className="image">
-            <img src="./images/img_cat.svg" alt="image" />
-          </div>
-        </div>
-
-        <div className="crad-item">
-          <div className="item">
-            <div className="avata">
-              <img src="./images/avt_veren.svg" alt="a" />
-            </div>
-            <div className="name-date">
-              <div className="name">Veren</div>
-              <div className="date">14/07/2023</div>
-            </div>
-            <div className="icon-ED">
-              <div className="icon-edit">
-                <img src="./images/icon_edit.svg" alt="" />
-              </div>
-              <div className="icon-delete">
-                <img src="./images/icon_delete.svg" alt="" />
-              </div>
-            </div>
-          </div>
-          <div className="sub-title">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.
-          </div>
-          <div className="image">
-            <img src="./images/img_baby.svg" alt="image" />
-          </div>
-        </div>
-
-        <div className="crad-item">
-          <div className="item">
-            <div className="avata">
-              <img src="./images/avt_mio.svg" alt="a" />
-            </div>
-            <div className="name-date">
-              <div className="name">Mio</div>
-              <div className="date">14/07/2023</div>
-            </div>
-            <div className="icon-ED">
-              <div className="icon-edit">
-                <img src="./images/icon_edit.svg" alt="" />
-              </div>
-              <div className="icon-delete">
-                <img src="./images/icon_delete.svg" alt="" />
-              </div>
-            </div>
-          </div>
-          <div className="sub-title">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.
-          </div>
-          <div className="image">
-            <img src="./images/img_elephant.svg" alt="image" />
-          </div>
-        </div>
-      </div>
+      <CardsComponent/>
+      
+      <ResultComponent/>
     </div>
   );
 }
