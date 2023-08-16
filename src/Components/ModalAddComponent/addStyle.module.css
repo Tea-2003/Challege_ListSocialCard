@@ -1,7 +1,6 @@
 .modal {
   color: #ffffff;
-  position: absolute;
-  margin: 145px 338px;
+  margin: 20px 296px;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #d2cbcb;
@@ -17,8 +16,12 @@
   font-family: Segoe UI, bold;
   padding-top: 25px;
 }
-.form {
-  padding: 40px 45px;
+.cardAdd {
+  padding: 40px 45px 25px;
+}
+.bodyCard {
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 20px;
 }
 .avata {
   display: flex;

@@ -17,12 +17,12 @@ function App() {
         <div className="header">
           <div className="title">list social card</div>
         </div>
-        {/* <NavigationComponent /> */}
-        {/* <ModalDeleteComponent/> */}
-        {/* <CardsComponent /> */}
-        {/* <ResultComponent /> */}
-
+        <NavigationComponent />
+        <CardsComponent />
         <DetailComponent/>
+        <ModalDeleteComponent/>
+        <ModalAddComponent/>
+        <ResultComponent />
       </div>
     </Router>
   );
