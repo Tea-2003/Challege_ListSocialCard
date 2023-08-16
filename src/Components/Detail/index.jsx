@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import styles from "./detailStyles.module.css";
-const ModalDeleteComponent = () => {
+import styles from "./styles.module.css";
+
+const Detail = () => {
   return (
     <div className={styles.cardDetail}>
       <div className={styles.title}>SOCIAL CARD DETAIL</div>
@@ -8,7 +9,7 @@ const ModalDeleteComponent = () => {
             <div className={styles.item}>
             <div className={styles.avata}>
                 <div className={styles.avt}>
-                <img src="./images/avt_veren.svg" alt="" />
+                <img src="./images/avt_veren.svg" alt="avt" />
                 </div>
                 <div className={styles.nameDate}>
                 <div className={styles.name}>Binance</div>
@@ -34,11 +35,11 @@ const ModalDeleteComponent = () => {
 
             <div className={styles.icon}>
             <div className={styles.iconHeart}>
-                <img src="./images/icon_heart.svg" alt="" />
+                <img src="./images/icon_heart.svg" alt="icon_heart" />
                 <span>2</span>
             </div>
             <div className={styles.iconComment}>
-                <img src="./images/icon_comment.svg" alt="" />
+                <img src="./images/icon_comment.svg" alt="icon_comment" />
                 <span>2</span>
             </div>
             </div>
@@ -81,4 +82,4 @@ const ModalDeleteComponent = () => {
   );
 };
 
-export default ModalDeleteComponent;
+export default Detail;

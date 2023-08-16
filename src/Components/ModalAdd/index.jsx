@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import styles from "./addStyle.module.css";
+import styles from "./style.module.css";
 
-const ModalAddComponent = () => {
+const ModalAdd = () => {
   return (
     <div className={styles.modal}>
       <div className={styles.title}>Add new card</div>
@@ -10,7 +10,7 @@ const ModalAddComponent = () => {
           <div className={styles.avata}>
             <div className={styles.avt}>Avata*</div>
             <div className={styles.uploading}>
-              <img src="./images/icon_arrow.svg" alt="" />
+              <img src="./images/icon_arrow.svg" alt="icon_arrow" />
               <span>Upload image</span>
             </div>
           </div>
@@ -29,7 +29,7 @@ const ModalAddComponent = () => {
           <div className={styles.avata}>
             <div className={styles.avt}>Image*</div>
             <div className={styles.uploading}>
-              <img src="./images/icon_arrow.svg" alt="" />
+              <img src="./images/icon_arrow.svg" alt="icon_arrow" />
               <span>Upload image</span>
             </div>
           </div>
@@ -42,4 +42,4 @@ const ModalAddComponent = () => {
     </div>
   );
 };
-export default ModalAddComponent;
+export default ModalAdd;

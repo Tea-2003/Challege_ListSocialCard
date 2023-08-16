@@ -2,13 +2,12 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import NavigationComponent from "./Components/NavigationComponent";
-import CardsComponent from "./Components/CardsComponent";
-import ResultComponent from "./Components/ResultComponent";
-import ModalAddComponent from "./Components/ModalAddComponent";
-import ModalDeleteComponent from "./Components/ModalDeleteComponent";
-import DetailComponent from "./Components/DetailComponent";
-
+import Navigation from "./Components/Navigation";
+import Card from "./Components/Card";
+import ModalAdd from "./Components/ModalAdd";
+import ModalDelete from "./Components/ModalDelete";
+import Detail from "./Components/Detail";
+import Result from "./Components/Result";
 function App() {
   return (
     <Router>
@@ -16,13 +15,13 @@ function App() {
         <div className="header">
           <div className="title">list social card</div>
         </div>
-        <NavigationComponent></NavigationComponent>
+        <Navigation />
         <Routes>
-          <Route path="/" element={<CardsComponent></CardsComponent>} />
-          <Route path="/detail" element={<DetailComponent/>} />
-          <Route path="/delete" element={<ModalDeleteComponent/>} />
-          <Route path="/add" element={<ModalAddComponent/>} />
-          <Route path="/result" element={<ResultComponent/>} />
+          <Route path="/" element={<Card />} />
+          <Route path="/detail" element={<Detail />} />
+          <Route path="/delete" element={<ModalDelete />} />
+          <Route path="/add" element={<ModalAdd />} />
+          <Route path="/result" element={<Result />} />
         </Routes>
       </div>
     </Router>

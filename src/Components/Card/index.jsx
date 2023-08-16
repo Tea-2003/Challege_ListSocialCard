@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./cardStyle.module.css";
+import styles from "./style.module.css";
 
-const CardsComponent = () => {
+const Card = () => {
   return (
     <div className={styles.cards}>
+      
       <div className={styles.cardItem}>
         <div className={styles.item}>
           <div className={styles.avata}>
@@ -15,10 +16,10 @@ const CardsComponent = () => {
           </div>
           <div className={styles.iconED}>
             <div className={styles.edit}>
-              <img src="./images/icon_edit.svg" alt="" />
+              <img src="./images/icon_edit.svg" alt="icon_edit" />
             </div>
             <div className={styles.delete}>
-              <img src="./images/icon_delete.svg" alt="" />
+              <img src="./images/icon_delete.svg" alt="icon_delete" />
             </div>
           </div>
         </div>
@@ -42,10 +43,10 @@ const CardsComponent = () => {
           </div>
           <div className={styles.iconED}>
             <div className={styles.edit}>
-              <img src="./images/icon_edit.svg" alt="" />
+              <img src="./images/icon_edit.svg" alt="icon_edit" />
             </div>
             <div className={styles.delete}>
-              <img src="./images/icon_delete.svg" alt="" />
+              <img src="./images/icon_delete.svg" alt="icon_delete" />
             </div>
           </div>
         </div>
@@ -61,7 +62,7 @@ const CardsComponent = () => {
       <div className={styles.cardItem}>
         <div className={styles.item}>
           <div className={styles.avata}>
-            <img src="./images/avt_mio.svg" alt="a" />
+            <img src="./images/avt_mio.svg" alt="mio" />
           </div>
           <div className={styles.nameDate}>
             <div className={styles.name}>Mio</div>
@@ -69,10 +70,10 @@ const CardsComponent = () => {
           </div>
           <div className={styles.iconED}>
             <div className={styles.edit}>
-              <img src="./images/icon_edit.svg" alt="" />
+              <img src="./images/icon_edit.svg" alt="icon_edit" />
             </div>
             <div className={styles.delete}>
-              <img src="./images/icon_delete.svg" alt="" />
+              <img src="./images/icon_delete.svg" alt="icon_delete" />
             </div>
           </div>
         </div>
@@ -88,4 +89,4 @@ const CardsComponent = () => {
   );
 };
 
-export default CardsComponent;
+export default Card;

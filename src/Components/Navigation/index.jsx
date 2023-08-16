@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./navStyle.module.css";
+import styles from "./style.module.css";
 
-const NavigationComponent = () => {
+const Navigation = () => {
  
   return (
     <div className={styles.navigation}>
@@ -9,7 +9,7 @@ const NavigationComponent = () => {
       <div className={styles.search}>
         <input type="text" placeholder="Search Name..." />
         <span>
-          <img src="images/icon_search.svg" alt />
+          <img src="images/icon_search.svg" alt="icon_search" />
         </span>
       </div>
     </div>
@@ -17,4 +17,4 @@ const NavigationComponent = () => {
   );
 };
 
-export default NavigationComponent;
+export default Navigation;
