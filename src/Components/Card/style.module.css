@@ -1,3 +1,4 @@
+
 .cards {
   padding-top: 30px;
   display: flex;
@@ -14,7 +15,7 @@
 .avata {
   padding-right: 15px;
 }
-.nameDate{
+.nameDate {
   display: flex;
   flex-direction: column;
   justify-content: center;

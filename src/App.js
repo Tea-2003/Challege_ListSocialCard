@@ -1,21 +1,18 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import ModalAdd from 'react-modal';
 
-import Navigation from "./Components/Navigation";
 import Card from "./Components/Card";
 import ModalAdd from "./Components/ModalAdd";
 import ModalDelete from "./Components/ModalDelete";
 import Detail from "./Components/Detail";
 import Result from "./Components/Result";
+
 function App() {
   return (
     <Router>
-      <div className="container">
-        <div className="header">
-          <div className="title">list social card</div>
-        </div>
-        <Navigation />
+      <div className="container">       
         <Routes>
           <Route path="/" element={<Card />} />
           <Route path="/detail" element={<Detail />} />
