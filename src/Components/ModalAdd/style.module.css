@@ -89,3 +89,9 @@ textarea {
   font-size: 13px;
   font-weight: bold;
 }
+
+@media(max-width: 768px) {
+  .modal {
+    margin: 20px 29px;
+  }
+}

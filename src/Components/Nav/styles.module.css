@@ -48,3 +48,23 @@
   padding: 13px;
   cursor: pointer;
 }
+
+@media(max-width: 768px) {
+  .navigation {
+    position: relative;
+    padding: 40px;
+  }
+  .btn {
+    right: 282px;;
+    padding: 16px 14px;
+
+  }
+  .search {
+    width: 230px;
+    right: 20px;
+  }
+  .search input {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}

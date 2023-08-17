@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 
-const ModalDelete = () => {
+const ModalDelete = ({closeModal}) => {
   return (
     <div className={styles.modal}>
       <div className={styles.cardDelete}>
@@ -10,13 +10,14 @@ const ModalDelete = () => {
             <img src="./images/icon_delete.svg" alt="icon_delete" />
           </div>
           <div className={styles.subTitle}>
-            This will delete your item form list Are you sure?
+            This will delete your item form list <br />
+            Are you sure?
           </div>
         </div>
       </div>
       <div className={styles.button}>
         <div className={styles.btnSave}>Delete</div>
-        <div className={styles.btnCancel}>Cancel</div>
+        <div className={styles.btnCancel} onClick={closeModal}>Cancel</div>
       </div>
     </div>
   );

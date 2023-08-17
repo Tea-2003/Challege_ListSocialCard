@@ -45,3 +45,11 @@ body {
   font-weight: 700;
   src: local("Segoe UI Bold Italic");
 }
+
+
+@media(max-width: 768px) {
+  .container {
+    display: block;
+    padding: 0;
+  }
+}

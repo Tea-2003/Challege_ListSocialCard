@@ -1,6 +1,4 @@
-
 .cards {
-  padding-top: 30px;
   display: flex;
   justify-content: space-around;
 }
@@ -20,6 +18,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 4px;
+  cursor: pointer;
 }
 .name {
   color: #000;
@@ -45,4 +44,14 @@
   color: #000;
   font-size: 15px;
   line-height: 20px;
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+}
+
+@media(max-width: 768px) {
+  .cards {
+    display: inline-block;
+  }
 }

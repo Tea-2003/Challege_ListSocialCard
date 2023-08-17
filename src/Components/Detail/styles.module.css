@@ -7,7 +7,6 @@
 }
 
 .title {
-  color: #000;
   text-align: center;
   font-size: 35px;
   font-weight: bold;
@@ -101,4 +100,28 @@
   color: #ffffff;
   border-radius: 10px;
   cursor: pointer;
+}
+
+@media(max-width: 768px) {
+  .cardDetail {
+    padding: 30px 16px 70px;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .comment {
+    padding: 20px 13px;
+  }
+  .addComment textarea {
+    width: 318px;
+    height: 126px;
+    padding: 10px;
+  }
+  .btnPost {
+    bottom: 24px;
+    right: 38px;
+  }
+  .images img{
+    width: 345px ;
+  }
 }
