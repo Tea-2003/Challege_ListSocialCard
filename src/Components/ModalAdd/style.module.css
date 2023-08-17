@@ -51,7 +51,7 @@ img {
 }
 
 .uploading input {
-  padding: 9px 75px;
+  padding: 9px 78px;
   outline: none;
   color: #ffffff;
   border: 1px solid#D9D9D9;
@@ -65,6 +65,7 @@ textarea {
   padding: 9px 74px;
   color: #ffffff;
   border: 1px solid#D9D9D9;
+  outline: none;
   border-radius: 5px;
 }
 
@@ -90,8 +91,17 @@ textarea {
   font-weight: bold;
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .modal {
-    margin: 20px 29px;
+    margin: 0;
+    width: 370px;
+  }
+  .uploading input {
+    width: 100%;
+    padding: 12px;
+  }
+  textarea {
+    width: 100%;
+    padding: 12px;
   }
 }

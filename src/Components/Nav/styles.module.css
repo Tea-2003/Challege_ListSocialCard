@@ -49,15 +49,14 @@
   cursor: pointer;
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .navigation {
     position: relative;
     padding: 40px;
   }
   .btn {
-    right: 282px;;
+    right: 282px;
     padding: 16px 14px;
-
   }
   .search {
     width: 230px;

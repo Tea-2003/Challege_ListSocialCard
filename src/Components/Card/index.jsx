@@ -38,6 +38,12 @@ const Card = () => {
   function closeDeleteModal() {
     setModalDeleteIsOpen(false);
   }
+  function handleCardClick(isEditOrDelete) {
+    if (!isEditOrDelete) {
+      window.location.href = "/Detail";
+    }
+  }
+
   return (
     <div>
       <Nav />
@@ -76,24 +82,20 @@ const Card = () => {
                 <div className={styles.date}>14/07/2023</div>
               </div>
               <div className={styles.iconED}>
-                <a href="/ModalAdd">
-                  <div className={styles.edit}>
-                    <img
-                      onClick={openModal}
-                      src="./images/icon_edit.svg"
-                      alt="icon_edit"
-                    />
-                  </div>
-                </a>
-                <a href="/ModalDelete">
-                  <div className={styles.delete}>
-                    <img
-                      onClick={openDeleteModal}
-                      src="./images/icon_delete.svg"
-                      alt="icon_delete"
-                    />
-                  </div>
-                </a>
+                <div className={styles.edit}>
+                  <img
+                    onClick={openModal}
+                    src="./images/icon_edit.svg"
+                    alt="icon_edit"
+                  />
+                </div>
+                <div className={styles.delete}>
+                  <img
+                    onClick={openDeleteModal}
+                    src="./images/icon_delete.svg"
+                    alt="icon_delete"
+                  />
+                </div>
               </div>
             </div>
             <div className={styles.subTitle}>
