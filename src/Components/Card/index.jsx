@@ -14,8 +14,10 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "0px",
-    border: "0px",
+    border: "none",
     background: "none",
+    boxshadow: "none",
+    overflow: "initial",
   },
 };
 
@@ -38,42 +40,33 @@ const Card = () => {
   function closeDeleteModal() {
     setModalDeleteIsOpen(false);
   }
-  function handleCardClick(isEditOrDelete) {
-    if (!isEditOrDelete) {
-      window.location.href = "/Detail";
-    }
-  }
 
   return (
     <div>
       <Nav />
-      <a href="/Detail">
-        <div className={styles.cards}>
-          <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-          >
-            <ModalAdd closeModal={closeModal}></ModalAdd>
-          </Modal>
 
-          <Modal
-            isOpen={modalDeleteIsOpen}
-            onRequestClose={closeDeleteModal}
-            style={customStyles}
-            contentLabel="Delete Modal"
-          >
-            <ModalDelete closeModal={closeDeleteModal}></ModalDelete>
-          </Modal>
+      <div className={styles.cards}>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <ModalAdd closeModal={closeModal}></ModalAdd>
+        </Modal>
 
-          <div
-            className={styles.cardItem}
-            onClick={() => {
-              window.location.href = "/Detail";
-            }}
-          >
-            <div className={styles.item}>
+        <Modal
+          isOpen={modalDeleteIsOpen}
+          onRequestClose={closeDeleteModal}
+          style={customStyles}
+          contentLabel="Delete Modal"
+        >
+          <ModalDelete closeModal={closeDeleteModal}></ModalDelete>
+        </Modal>
+
+        <div className={styles.cardItem}>
+          <div className={styles.item}>
+            <a href="/Detail">
               <div className={styles.avata}>
                 <img src="./images/avt_person.svg" alt="a" />
               </div>
@@ -81,23 +74,25 @@ const Card = () => {
                 <div className={styles.name}>Phu</div>
                 <div className={styles.date}>14/07/2023</div>
               </div>
-              <div className={styles.iconED}>
-                <div className={styles.edit}>
-                  <img
-                    onClick={openModal}
-                    src="./images/icon_edit.svg"
-                    alt="icon_edit"
-                  />
-                </div>
-                <div className={styles.delete}>
-                  <img
-                    onClick={openDeleteModal}
-                    src="./images/icon_delete.svg"
-                    alt="icon_delete"
-                  />
-                </div>
+            </a>
+            <div className={styles.iconED}>
+              <div className={styles.edit}>
+                <img
+                  onClick={openModal}
+                  src="./images/icon_edit.svg"
+                  alt="icon_edit"
+                />
+              </div>
+              <div className={styles.delete}>
+                <img
+                  onClick={openDeleteModal}
+                  src="./images/icon_delete.svg"
+                  alt="icon_delete"
+                />
               </div>
             </div>
+          </div>
+          <a href="/Detail">
             <div className={styles.subTitle}>
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout.
@@ -105,10 +100,12 @@ const Card = () => {
             <div className={styles.images}>
               <img src="./images/img_cat.svg" alt="image" />
             </div>
-          </div>
+          </a>
+        </div>
 
-          <div className={styles.cardItem}>
-            <div className={styles.item}>
+        <div className={styles.cardItem}>
+          <div className={styles.item}>
+            <a href="/Detail">
               <div className={styles.avata}>
                 <img src="./images/avt_veren.svg" alt="a" />
               </div>
@@ -116,23 +113,26 @@ const Card = () => {
                 <div className={styles.name}>Varen</div>
                 <div className={styles.date}>14/07/2023</div>
               </div>
-              <div className={styles.iconED}>
-                <div className={styles.edit}>
-                  <img
-                    onClick={openModal}
-                    src="./images/icon_edit.svg"
-                    alt="icon_edit"
-                  />
-                </div>
-                <div className={styles.delete}>
-                  <img
-                    onClick={openDeleteModal}
-                    src="./images/icon_delete.svg"
-                    alt="icon_delete"
-                  />
-                </div>
+            </a>
+
+            <div className={styles.iconED}>
+              <div className={styles.edit}>
+                <img
+                  onClick={openModal}
+                  src="./images/icon_edit.svg"
+                  alt="icon_edit"
+                />
+              </div>
+              <div className={styles.delete}>
+                <img
+                  onClick={openDeleteModal}
+                  src="./images/icon_delete.svg"
+                  alt="icon_delete"
+                />
               </div>
             </div>
+          </div>
+          <a href="/Detail">
             <div className={styles.subTitle}>
               Lập một form để tạo mới 1 Social Card , trong card sẽ chứa các
               thông tin: Avatar, Name, Description, Image
@@ -140,10 +140,12 @@ const Card = () => {
             <div className={styles.images}>
               <img src="./images/img_baby.svg" alt="image" />
             </div>
-          </div>
+          </a>
+        </div>
 
-          <div className={styles.cardItem}>
-            <div className={styles.item}>
+        <div className={styles.cardItem}>
+          <div className={styles.item}>
+            <a href="/Detail">
               <div className={styles.avata}>
                 <img src="./images/avt_mio.svg" alt="mio" />
               </div>
@@ -151,23 +153,26 @@ const Card = () => {
                 <div className={styles.name}>Mio</div>
                 <div className={styles.date}>14/07/2023</div>
               </div>
-              <div className={styles.iconED}>
-                <div className={styles.edit}>
-                  <img
-                    onClick={openModal}
-                    src="./images/icon_edit.svg"
-                    alt="icon_edit"
-                  />
-                </div>
-                <div className={styles.delete}>
-                  <img
-                    onClick={openDeleteModal}
-                    src="./images/icon_delete.svg"
-                    alt="icon_delete"
-                  />
-                </div>
+            </a>
+
+            <div className={styles.iconED}>
+              <div className={styles.edit}>
+                <img
+                  onClick={openModal}
+                  src="./images/icon_edit.svg"
+                  alt="icon_edit"
+                />
+              </div>
+              <div className={styles.delete}>
+                <img
+                  onClick={openDeleteModal}
+                  src="./images/icon_delete.svg"
+                  alt="icon_delete"
+                />
               </div>
             </div>
+          </div>
+          <a href="/Detail">
             <div className={styles.subTitle}>
               Next, you select one property. It doesn’t matter which one you
               choose, yet it’s best to pick one that seems totally unrelated to
@@ -176,9 +181,9 @@ const Card = () => {
             <div className={styles.images}>
               <img src="./images/img_elephant.svg" alt="image" />
             </div>
-          </div>
+          </a>
         </div>
-      </a>
+      </div>
     </div>
   );
 };

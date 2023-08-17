@@ -9,7 +9,7 @@ const ModalAdd = ({ closeModal }) => {
         <div className={styles.cardAdd}>
           <div className={styles.bodyCard}>
             <div className={styles.avata}>
-              <div className={styles.avt}>Avata*</div>
+              <div className={styles.avt}>Avatar*</div>
               <div className={styles.uploading}>
                 <img src="./images/icon_arrow.svg" alt="icon_arrow" />
                 <span>Upload image</span>
@@ -18,10 +18,10 @@ const ModalAdd = ({ closeModal }) => {
             <div className={styles.avata}>
               <div className={styles.avt}>Name*</div>
               <div className={styles.uploading}>
-                <input type="text" />
+                <input type="text"></input>
               </div>
             </div>
-            <div className={styles.avata}>
+            <div className={styles.avataTextarea}>
               <div className={styles.avt}>Description*</div>
               <div className={styles.uploadingTextarea}>
                 <textarea type="text" defaultValue={""} />

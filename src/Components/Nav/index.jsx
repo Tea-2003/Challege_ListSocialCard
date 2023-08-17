@@ -12,8 +12,10 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "0px",
-    border: "0px",
+    border: "none",
     background: "none",
+    boxShadow: "none",
+    overflow: "initial",
   },
 };
 const Nav = () => {

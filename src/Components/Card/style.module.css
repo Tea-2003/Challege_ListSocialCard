@@ -10,6 +10,10 @@
   display: flex;
   padding-bottom: 15px;
 }
+
+.item a{
+  display: flex;
+}
 .avata {
   padding-right: 15px;
 }
