@@ -1,9 +1,62 @@
-import React from "react";
 import styles from "./style.module.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const ModalAdd = ({ closeModal }) => {
+  useEffect(() => {
+    const form = document.getElementById("form-add");
+    const profileImg = document.getElementById("profile-img");
+    console.log("Form element:", form);
+    console.log("Profile image element:", profileImg);
+
+    if (form && profileImg) {
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        uploadFiles(profileImg.files);
+      });
+    }
+  }, []);
+
+  const uploadFiles = async (files) => {
+    if (files) {
+      const CLOUD_NAME = "dn7lgsdd1";
+      const PRESET_NAME = "upload-img";
+      const url = [];
+      const FOLDER_NAME = "SOCIAL";
+      const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+
+      const formData = new FormData(); //key value
+
+      formData.append("upload_preset", PRESET_NAME);
+      formData.append("folder", FOLDER_NAME);
+
+      for (const file of files) {
+        formData.append("file", file);
+
+        const response = await axios.post(api, formData, {
+          headers: {
+            "content-Type": "multipart/form-data",
+          },
+        });
+        url.push(response.data.secure_url);
+        console.log(url);
+      }
+      return url;
+    }
+  };
+  const [uploadedImageName, setUploadedImageName] = useState(null);
+  const [hasUploaded, setHasUploaded] = useState(false);
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUploadedImageName(file.name);
+      setHasUploaded(true);
+    }
+  };
+
   return (
-    <>
+    <form action="" id="form-add">
       <div className={styles.modal}>
         <div className={styles.title}>Add new card</div>
         <div className={styles.cardAdd}>
@@ -11,8 +64,23 @@ const ModalAdd = ({ closeModal }) => {
             <div className={styles.avata}>
               <div className={styles.avt}>Avatar*</div>
               <div className={styles.uploading}>
-                <img src="./images/icon_arrow.svg" alt="icon_arrow" />
-                <span>Upload image</span>
+                <input type="file" id="profile-img"
+                  onChange={handleImageUpload}multiple />
+                {/* <label htmlFor="fileupload" className={styles.uploadLabel} >
+                  {hasUploaded ? (
+                    <>
+                      <img src="./images/icon_arrow.svg" alt="icon_arrow" />
+                      <span>{uploadedImageName}</span>
+                    </>
+                  ) : (
+                    <>
+                      <img src="./images/icon_arrow.svg" alt="icon_arrow" />
+                      <span>Upload image</span>
+                    
+                    </>
+                  )}
+                </label> */}
+                
               </div>
             </div>
             <div className={styles.avata}>
@@ -37,14 +105,16 @@ const ModalAdd = ({ closeModal }) => {
           </div>
 
           <div className={styles.button}>
-            <div className={styles.btnSave}>Save</div>
+            <button type="submit" className={styles.btnSave}>
+              Save
+            </button>
             <div className={styles.btnCancel} onClick={closeModal}>
               Cancel
             </div>
           </div>
         </div>
       </div>
-    </>
+    </form>
   );
 };
 export default ModalAdd;

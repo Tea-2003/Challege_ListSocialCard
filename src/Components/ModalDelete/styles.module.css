@@ -68,3 +68,16 @@
   border-radius: 10px;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .modal {
+    margin: 0;
+    width: 370px;
+  }
+  .subTitle {
+    text-align: center;
+    margin: 0 20px;
+  }
+  .button {
+    margin-left: 150px;
+  }
+}

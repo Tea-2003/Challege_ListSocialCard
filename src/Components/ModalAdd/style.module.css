@@ -40,8 +40,6 @@
 
 .uploading {
   width: 100%;
-}
-img {
   cursor: pointer;
 }
 .uploading span {
@@ -84,6 +82,8 @@ textarea {
   cursor: pointer;
   font-size: 13px;
   font-weight: bold;
+  color: #fff;
+  border: none;
 }
 .btnCancel {
   padding: 13px 18px;
@@ -94,10 +94,20 @@ textarea {
   font-weight: bold;
 }
 
+.hiddenInput {
+  display: none;
+}
+
+.uploadLabel {
+  display: inline-block;
+  cursor: pointer;
+}
+
+
 @media (max-width: 768px) {
   .modal {
     margin: 0;
-    width: 370px;
+    width: 260px;
   }
   .uploading input {
     width: 100%;
