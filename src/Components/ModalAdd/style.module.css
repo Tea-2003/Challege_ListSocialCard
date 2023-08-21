@@ -42,6 +42,7 @@
   width: 100%;
   cursor: pointer;
 }
+
 .uploading span {
   color: #000;
   font-size: 16px;
@@ -101,8 +102,15 @@ textarea {
 .uploadLabel {
   display: inline-block;
   cursor: pointer;
+  position: relative;
 }
+.uploadingInput{
+  opacity: 0;
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
 
+}
 
 @media (max-width: 768px) {
   .modal {

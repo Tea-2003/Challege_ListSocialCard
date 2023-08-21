@@ -9,7 +9,7 @@ const cardData = [
     },
     {
       id: 2,
-      avatar: "./images/avt_veren.svg",
+      avatar: "./images/avt_varen.svg",
       name: "Varen",
       date: "14/07/2023",
       subTitle: " Lập một form để tạo mới 1 Social Card , trong card sẽ chứa các thông tin: Avatar, Name, Description, Image",
@@ -19,7 +19,7 @@ const cardData = [
       id: 3,
       avatar: "./images/avt_mio.svg",
       name: "Mio",
-      date: "14/07/2023",
+      date: "22/04/2023",
       subTitle: " Next, you select one property. It doesn’t matter which one you choose, yet it’s best to pick one that seems totally unrelated to your challenge.",
       image: "./images/img_elephant.svg",
     },

@@ -25,7 +25,7 @@ const ModalAdd = ({ closeModal }) => {
       const FOLDER_NAME = "SOCIAL";
       const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
 
-      const formData = new FormData(); //key value
+      const formData = new FormData();
 
       formData.append("upload_preset", PRESET_NAME);
       formData.append("folder", FOLDER_NAME);
@@ -44,7 +44,9 @@ const ModalAdd = ({ closeModal }) => {
       return url;
     }
   };
+
   const [uploadedImageName, setUploadedImageName] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [hasUploaded, setHasUploaded] = useState(false);
 
   const handleImageUpload = (e) => {
@@ -52,6 +54,7 @@ const ModalAdd = ({ closeModal }) => {
     if (file) {
       setUploadedImageName(file.name);
       setHasUploaded(true);
+      setImagePreview(e.target.result);
     }
   };
 
@@ -64,23 +67,25 @@ const ModalAdd = ({ closeModal }) => {
             <div className={styles.avata}>
               <div className={styles.avt}>Avatar*</div>
               <div className={styles.uploading}>
-                <input type="file" id="profile-img"
-                  onChange={handleImageUpload}multiple />
-                {/* <label htmlFor="fileupload" className={styles.uploadLabel} >
+                <label htmlFor="profile-img" className={styles.uploadLabel}>
                   {hasUploaded ? (
                     <>
-                      <img src="./images/icon_arrow.svg" alt="icon_arrow" />
                       <span>{uploadedImageName}</span>
                     </>
                   ) : (
                     <>
                       <img src="./images/icon_arrow.svg" alt="icon_arrow" />
                       <span>Upload image</span>
-                    
                     </>
                   )}
-                </label> */}
-                
+                </label>
+                <input
+                  className={styles.uploadingInput}
+                  type="file"
+                  id="profile-img"
+                  onChange={handleImageUpload}
+                  multiple
+                />
               </div>
             </div>
             <div className={styles.avata}>
@@ -98,8 +103,23 @@ const ModalAdd = ({ closeModal }) => {
             <div className={styles.avata}>
               <div className={styles.avt}>Image*</div>
               <div className={styles.uploading}>
-                <img src="./images/icon_arrow.svg" alt="icon_arrow" />
-                <span>Upload image</span>
+                <label htmlFor="profile-img" className={styles.uploadLabel}>
+                  {uploadedImageName ? (
+                    <span>{uploadedImageName}</span>
+                  ) : (
+                    <>
+                      <img src="./images/icon_arrow.svg" alt="icon_arrow" />
+                      <span>Upload image</span>
+                    </>
+                  )}
+                </label>
+                <input
+                  className={styles.uploadingInput}
+                  type="file"
+                  id="profile-img"
+                  onChange={handleImageUpload}
+                  multiple
+                />
               </div>
             </div>
           </div>
