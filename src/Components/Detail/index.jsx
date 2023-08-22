@@ -1,33 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 
 const Detail = () => {
-  const [numHearts, setNumHearts] = useState(0); // Initial value is 2
-  const [numComments, setNumComments] = useState(0); // Number of original comments
-  const [comments, setComments] = useState([]); // List comment
+  const [numHearts, setNumHearts] = useState(0);
+  const [numComments, setNumComments] = useState(0);
+  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [postDateTime, setPostDateTime] = useState("");
+  const [commentError, setCommentError] = useState(false);
 
   const increaseHearts = () => {
     setNumHearts(numHearts + 1);
-  };
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-    }
+    localStorage.setItem("numHearts", numHearts + 1);
   };
   const handlePostComment = () => {
     if (newComment.trim() !== "") {
       const currentDateTime = new Date();
-      const options = { year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric" };
-      const formattedDateTime = currentDateTime.toLocaleString(undefined, options);
-      
-      setComments([...comments, newComment]);
-      setNumComments((prevNumComments) => prevNumComments + 1);
-      setPostDateTime(formattedDateTime); // Lưu ngày và giờ post
-      setNewComment(""); // Đặt lại giá trị của newComment
+      const options = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      const formattedDateTime = currentDateTime.toLocaleString(
+        undefined,
+        options
+      );
+
+      const updatedComments = [
+        ...comments,
+        { text: newComment, postDateTime: formattedDateTime },
+      ];
+
+      setComments(updatedComments);
+      setNumComments(updatedComments.length); // Save the date and time of the post
+
+      localStorage.setItem("comments", JSON.stringify(updatedComments));
+      setNewComment("");
+      setCommentError(true);
+
+    } else {
+      setCommentError(false);
+
+      const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
+      const updatedComments = [...storedComments, newComment];
+      localStorage.setItem("comments", JSON.stringify(updatedComments));
+      setNewComment("");
+      setComments(updatedComments);
     }
   };
+
+  useEffect(() => {
+    const storedComments = localStorage.getItem("comments");
+    if (storedComments) {
+      setComments(JSON.parse(storedComments));
+      setNumComments(JSON.parse(storedComments).length);
+    }
+
+    const storedNumHearts = localStorage.getItem("numHearts");
+    if (storedNumHearts) {
+      setNumHearts(Number(storedNumHearts));
+    }
+  }, []);
+
   return (
     <div className={styles.cardDetail}>
       <div className={styles.title}>SOCIAL CARD DETAIL</div>
@@ -84,29 +120,27 @@ const Detail = () => {
         </div>
 
         <div className={styles.listComment}>
-        {comments.map((comment, index) => (
-        <div key={index} className={styles.commentDate}>
-          <div className={styles.date}>{postDateTime}</div> {/* Show current date and time */}
-          <div className={styles.subTitle}>{comment}</div>
-        </div>
-      ))}
+          {comments.map((comment, index) => (
+            <div key={index} className={styles.commentDate}>
+              <div className={styles.date}>{comment.postDateTime}</div>
+              <div className={styles.subTitle}>{comment.text}</div>
+            </div>
+          ))}
         </div>
       </div>
+
       <div className={styles.comment}>
         <div className={styles.postTile}>Post new comment</div>
         <div className={styles.newComment}>
           <div className={styles.addComment}>
             <textarea
+              className={commentError ? styles.errorTextarea : ""}
               type="text"
               placeholder="Add comment"
               onChange={(e) => setNewComment(e.target.value)}
-              onKeyDown={handleKeyDown}
             />
           </div>
-          <div
-            className={styles.btnPost}
-            onClick={handlePostComment}
-          >
+          <div className={styles.btnPost} onClick={handlePostComment}>
             Post
           </div>
         </div>

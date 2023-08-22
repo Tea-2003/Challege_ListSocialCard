@@ -24,10 +24,10 @@ const Nav = () => {
   function openModal() {
     setIsOpen(true);
   }
-
   function closeModal() {
     setIsOpen(false);
   }
+
   return (
     <>
       <Modal
@@ -38,6 +38,7 @@ const Nav = () => {
       >
         <ModalAdd closeModal={closeModal}></ModalAdd>
       </Modal>
+
       <div className={styles.header}>
         <div className={styles.title}>list social card</div>
       </div>
@@ -47,11 +48,16 @@ const Nav = () => {
           Add New
         </div>
         <div className={styles.search}>
-          <input type="text" placeholder="Search Name..." />
+          <input
+            type="text"
+            placeholder="Search Name..."
+            
+          />
           <span>
             <img src="images/icon_search.svg" alt="icon_search" />
           </span>
         </div>
+  
       </div>
     </>
   );
