@@ -58,83 +58,149 @@ const ModalAdd = ({ closeModal }) => {
     }
   };
 
-  return (
-    <form action="" id="form-add">
-      <div className={styles.modal}>
-        <div className={styles.title}>Add new card</div>
-        <div className={styles.cardAdd}>
-          <div className={styles.bodyCard}>
-            <div className={styles.avata}>
-              <div className={styles.avt}>Avatar*</div>
-              <div className={styles.uploading}>
-                <label htmlFor="profile-img" className={styles.uploadLabel}>
-                  {hasUploaded ? (
-                    <>
-                      <span>{uploadedImageName}</span>
-                    </>
-                  ) : (
-                    <>
-                      <img src="./images/icon_arrow.svg" alt="icon_arrow" />
-                      <span>Upload image</span>
-                    </>
-                  )}
-                </label>
-                <input
-                  className={styles.uploadingInput}
-                  type="file"
-                  id="profile-img"
-                  onChange={handleImageUpload}
-                  multiple
-                />
-              </div>
-            </div>
-            <div className={styles.avata}>
-              <div className={styles.avt}>Name*</div>
-              <div className={styles.uploading}>
-                <input type="text"></input>
-              </div>
-            </div>
-            <div className={styles.avataTextarea}>
-              <div className={styles.avt}>Description*</div>
-              <div className={styles.uploadingTextarea}>
-                <textarea type="text" defaultValue={""} />
-              </div>
-            </div>
-            <div className={styles.avata}>
-              <div className={styles.avt}>Image*</div>
-              <div className={styles.uploading}>
-                <label htmlFor="profile-img" className={styles.uploadLabel}>
-                  {uploadedImageName ? (
-                    <span>{uploadedImageName}</span>
-                  ) : (
-                    <>
-                      <img src="./images/icon_arrow.svg" alt="icon_arrow" />
-                      <span>Upload image</span>
-                    </>
-                  )}
-                </label>
-                <input
-                  className={styles.uploadingInput}
-                  type="file"
-                  id="profile-img"
-                  onChange={handleImageUpload}
-                  multiple
-                />
-              </div>
-            </div>
-          </div>
+  //  Validate
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [nameError, setNameError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
 
-          <div className={styles.button}>
-            <button type="submit" className={styles.btnSave}>
-              Save
-            </button>
-            <div className={styles.btnCancel} onClick={closeModal}>
-              Cancel
+  const [uploadedImageNameProfile, setUploadedImageNameProfile] =
+    useState(null);
+  const [hasUploadedProfile, setHasUploadedProfile] = useState(false);
+
+  const [uploadedImageNameContent, setUploadedImageNameContent] =
+    useState(null);
+
+  const [hasUploadedContent, setHasUploadedContent] = useState(false);
+  const handleImageUploadProfile = (e) => {
+    console.log("Uploading profile image...");
+    const file = e.target.files[0];
+    if (file) {
+      console.log("Profile image selected:", file);
+      setUploadedImageNameProfile(file.name);
+      setHasUploadedProfile(true);
+    }
+  };
+  const handleImageUploadContent = (e) => {
+    console.log("Uploading profile image...");
+    const file = e.target.files[0];
+    if (file) {
+      console.log("Content image selected:", file);
+      setUploadedImageNameContent(file.name);
+      setHasUploadedContent(true);
+    }
+  };
+  const handleNameChange = (event) => {
+    const value = event.target.value;
+    setName(value);
+    setNameError(value === "");
+  };
+
+  const handleDescriptionChange = (event) => {
+    const value = event.target.value;
+    setDescription(value);
+    setDescriptionError(value === "");
+  };
+
+  const handleSaveClick = async () => {
+    setNameError(name === "");
+    setDescriptionError(description === "");
+
+    if (
+      !name ||
+      !description ||
+      !uploadedImageNameProfile ||
+      !uploadedImageNameContent
+    ) {
+      return; // Không thực hiện lưu nếu có ô input nào còn trống
+    }
+
+    return (
+      <form action="" id="form-add">
+        <div className={styles.modal}>
+          <div className={styles.title}>Add new card</div>
+          <div className={styles.cardAdd}>
+            <div className={styles.bodyCard}>
+              <div className={styles.avata}>
+                <div className={styles.avt}>Avatar*</div>
+                <div className={styles.uploading}>
+                  <label htmlFor="profile-img" className={styles.uploadLabel}>
+                    {hasUploaded ? (
+                      <>
+                        <span>{uploadedImageName}</span>
+                      </>
+                    ) : (
+                      <>
+                        <img src="./images/icon_arrow.svg" alt="icon_arrow" />
+                        <span>Upload image</span>
+                      </>
+                    )}
+                  </label>
+                  <input
+                    className={styles.uploadingInput}
+                    type="file"
+                    id="profile-img"
+                    onChange={handleImageUploadProfile}
+                    multiple
+                  />
+                </div>
+              </div>
+              <div className={styles.avata}>
+                <div className={styles.avt}>Name*</div>
+                <div className={styles.uploading}>
+                  <input type="text"  required />
+                </div>
+              </div>
+              <div className={styles.avataTextarea}>
+                <div className={styles.avt}>Description*</div>
+                <div className={styles.uploadingTextarea}>
+                  <textarea
+                    type="text"
+                    onChange={handleDescriptionChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className={styles.avata}>
+                <div className={styles.avt}>Image*</div>
+                <div className={styles.uploading}>
+                  <label htmlFor="profile-img" className={styles.uploadLabel}>
+                    {uploadedImageName ? (
+                      <span>{uploadedImageName}</span>
+                    ) : (
+                      <>
+                        <img src="./images/icon_arrow.svg" alt="icon_arrow" />
+                        <span>Upload image</span>
+                      </>
+                    )}
+                  </label>
+                  <input
+                    className={styles.uploadingInput}
+                    type="file"
+                    id="profile-img"
+                    onChange={handleImageUploadContent}
+                    multiple
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.button}>
+              <button
+                type="submit"
+                className={styles.btnSave}
+                onClick={handleSaveClick}
+              >
+                Save
+              </button>
+              <div className={styles.btnCancel} onClick={closeModal}>
+                Cancel
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  );
+      </form>
+    );
+  };
 };
 export default ModalAdd;
