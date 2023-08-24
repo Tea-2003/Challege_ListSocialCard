@@ -45,18 +45,76 @@ const ModalAdd = ({ closeModal }) => {
     }
   };
 
+  const [uploadedAvataName, setUploadedAvataName] = useState(null);
   const [uploadedImageName, setUploadedImageName] = useState(null);
+  const [uploadedName, setUploadedName] = useState(null);
+  const [uploadedDesciptionName, setUploadedDesciptionName] = useState(null);
+
   const [imagePreview, setImagePreview] = useState(null);
-  const [hasUploaded, setHasUploaded] = useState(false);
+
+  const [hasUploadedAvata, setHasUploadedAvata] = useState(false);
+  const [hasUploadedImage, setHasUploadedImage] = useState(false);
+  const [hasUploadedName, setHasUploadedName] = useState(true);
+  const [hasUploadedDesciption, setHasUploadedDesciption] = useState(true);
+
+  const handleAvataUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUploadedAvataName(file.name);
+      setHasUploadedAvata(true);
+      setImagePreview(e.target.result);
+    } else {
+      setHasUploadedAvata(false);
+    }
+    const uploadedAvata = e.target.files[0];
+    setAvatar(uploadedAvata);
+
+  };
+
+  const handleNameChange = (e) => {
+    const newName = e.target.value;
+    setHasUploadedName(newName.trim() !== "");
+  };
+
+  const handleDesciptionName = (e) => {
+    const newName = e.target.value;
+    setHasUploadedDesciption(newName.trim() !== "");
+    setName(newName);
+
+    const newDescription = e.target.value;
+    setDescription(newDescription);
+  };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       setUploadedImageName(file.name);
-      setHasUploaded(true);
+      setHasUploadedImage(true);
       setImagePreview(e.target.result);
+    } else {
+      setHasUploadedImage(false);
     }
+    const uploadedImages = e.target.files;
+    setImages(uploadedImages);
   };
+
+  //Add fields
+  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [images, setImages] = useState([]);
+
+  const handleSave = () => {
+    // Tạo một object để lưu dữ liệu
+    const cardData = {
+      avatar,
+      name,
+      description,
+      images,
+    };
+    console.log("Card data to save:", cardData);
+  };
+  const [dataList, setDataList] = useState([]);
 
   return (
     <form action="" id="form-add">
@@ -65,16 +123,31 @@ const ModalAdd = ({ closeModal }) => {
         <div className={styles.cardAdd}>
           <div className={styles.bodyCard}>
             <div className={styles.avata}>
-              <div className={styles.avt}>Avatar*</div>
+              <div
+                className={`${styles.avt} ${
+                  !hasUploadedAvata ? styles.errorText : ""
+                }`}
+              >
+                Avatar*
+              </div>
               <div className={styles.uploading}>
-                <label htmlFor="profile-img" className={styles.uploadLabel}>
-                  {hasUploaded ? (
+                <label
+                  htmlFor="profile-img"
+                  className={`${styles.uploadLabel} ${
+                    !hasUploadedAvata ? styles.errorText : ""
+                  }`}
+                >
+                  {hasUploadedAvata ? (
                     <>
-                      <span>{uploadedImageName}</span>
+                      <span>{uploadedAvataName}</span>
                     </>
                   ) : (
                     <>
-                      <img src="./images/icon_arrow.svg" alt="icon_arrow" />
+                      <img
+                        src="./images/icon_arrow.svg"
+                        alt="icon_arrow"
+                        required
+                      />
                       <span>Upload image</span>
                     </>
                   )}
@@ -83,32 +156,66 @@ const ModalAdd = ({ closeModal }) => {
                   className={styles.uploadingInput}
                   type="file"
                   id="profile-img"
-                  onChange={handleImageUpload}
-                  multiple
+                  onChange={handleAvataUpload}
+                  required
                 />
               </div>
             </div>
+
             <div className={styles.avata}>
-              <div className={styles.avt}>Name*</div>
+              <div
+                className={`${styles.avt} ${
+                  !hasUploadedName ? styles.errorName : ""
+                }`}
+              >
+                Name*
+              </div>
               <div className={styles.uploading}>
-                <input type="text"></input>
+                <input type="text" onChange={handleNameChange} required />
               </div>
             </div>
+
             <div className={styles.avataTextarea}>
-              <div className={styles.avt}>Description*</div>
+              <div
+                className={`${styles.avt} ${
+                  !hasUploadedDesciption ? styles.errorName : ""
+                }`}
+              >
+                Description*
+              </div>
               <div className={styles.uploadingTextarea}>
-                <textarea type="text" defaultValue={""} />
+                <textarea
+                  type="text"
+                  onChange={handleDesciptionName}
+                  required
+                />
               </div>
             </div>
+
             <div className={styles.avata}>
-              <div className={styles.avt}>Image*</div>
+              <div
+                className={`${styles.avt} ${
+                  !hasUploadedImage ? styles.errorText : ""
+                }`}
+              >
+                Image*
+              </div>
               <div className={styles.uploading}>
-                <label htmlFor="profile-img" className={styles.uploadLabel}>
+                <label
+                  htmlFor="profile-img"
+                  className={`${styles.uploadLabel} ${
+                    !hasUploadedImage ? styles.errorText : ""
+                  }`}
+                >
                   {uploadedImageName ? (
                     <span>{uploadedImageName}</span>
                   ) : (
                     <>
-                      <img src="./images/icon_arrow.svg" alt="icon_arrow" />
+                      <img
+                        src="./images/icon_arrow.svg"
+                        alt="icon_arrow"
+                        required
+                      />
                       <span>Upload image</span>
                     </>
                   )}
@@ -125,7 +232,7 @@ const ModalAdd = ({ closeModal }) => {
           </div>
 
           <div className={styles.button}>
-            <button type="submit" className={styles.btnSave}>
+            <button type="submit" className={styles.btnSave} onClick={handleSave}>
               Save
             </button>
             <div className={styles.btnCancel} onClick={closeModal}>

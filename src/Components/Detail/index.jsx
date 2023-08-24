@@ -38,6 +38,7 @@ const Detail = () => {
 
       localStorage.setItem("comments", JSON.stringify(updatedComments));
       setNewComment("");
+
       setCommentError(true);
 
     } else {
@@ -54,10 +55,11 @@ const Detail = () => {
   useEffect(() => {
     const storedComments = localStorage.getItem("comments");
     if (storedComments) {
-      setComments(JSON.parse(storedComments));
-      setNumComments(JSON.parse(storedComments).length);
+      const parsedComments = JSON.parse(storedComments);
+      setComments(parsedComments);
+      setNumComments(parsedComments.length);
     }
-
+  
     const storedNumHearts = localStorage.getItem("numHearts");
     if (storedNumHearts) {
       setNumHearts(Number(storedNumHearts));
@@ -79,17 +81,7 @@ const Detail = () => {
             </div>
           </div>
         </div>
-        <div className={styles.subTitle}>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more- or-less normal distribution
-          of letters, as opposed to using 'Content here, content here', making
-          it look like readable English. Many desktop publishing packages and
-          web page editors now use Lorem Ipsum as their default model text, and
-          a search for 'lorem ipsum' will uncover many web sites still in their
-          infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).
-        </div>
+        <div className={styles.subTitle}>{comments}</div>
 
         <div className={styles.images}>
           <img src="./images/img_house.png" alt="image" />
@@ -122,11 +114,12 @@ const Detail = () => {
         <div className={styles.listComment}>
           {comments.map((comment, index) => (
             <div key={index} className={styles.commentDate}>
-              <div className={styles.date}>{comment.postDateTime}</div>
+              <div className={styles.date}>{comment.postDateTime}</div>{" "}
               <div className={styles.subTitle}>{comment.text}</div>
             </div>
           ))}
         </div>
+
       </div>
 
       <div className={styles.comment}>
@@ -138,6 +131,7 @@ const Detail = () => {
               type="text"
               placeholder="Add comment"
               onChange={(e) => setNewComment(e.target.value)}
+              required
             />
           </div>
           <div className={styles.btnPost} onClick={handlePostComment}>

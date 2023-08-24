@@ -110,7 +110,7 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.errorTextarea {
+.addComment textarea:invalid {
   border-color: red;
 }
 

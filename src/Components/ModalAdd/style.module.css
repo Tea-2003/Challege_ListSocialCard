@@ -60,7 +60,7 @@
   border-radius: 5px;
 }
 .uploadingTextarea {
-  padding-left: 10px;
+  padding-left: 8px;
   width: 100%;
 }
 textarea {
@@ -69,6 +69,30 @@ textarea {
   border: 1px solid#D9D9D9;
   outline: none;
   border-radius: 5px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.uploading input[type="text"],
+.uploadingTextarea textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #000;
+}
+
+.uploading input[type="text"]:invalid,
+.uploadingTextarea textarea:invalid {
+  border-color: red;
+}
+
+.errorText {
+  color: #f3115e;
+  filter: brightness(0) saturate(100%) invert(59%) sepia(96%) saturate(6764%)
+    hue-rotate(338deg) brightness(99%) contrast(98%);
+}
+
+.errorName{
+  color: #f3115e;
 }
 
 .button {
@@ -104,15 +128,11 @@ textarea {
   cursor: pointer;
   position: relative;
 }
-.uploadingInput{
+.uploadingInput {
   opacity: 0;
   position: absolute;
-  right: 0px;
+  left: 118px;
   cursor: pointer;
-
-}
-.errorBorder {
-  border: 1px solid red;
 }
 
 @media (max-width: 768px) {
