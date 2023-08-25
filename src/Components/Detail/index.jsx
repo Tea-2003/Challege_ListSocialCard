@@ -37,17 +37,16 @@ const Detail = () => {
       setNumComments(updatedComments.length); // Save the date and time of the post
 
       localStorage.setItem("comments", JSON.stringify(updatedComments));
-      setNewComment("");
+      setNewComment();
 
       setCommentError(true);
-
     } else {
       setCommentError(false);
 
       const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
       const updatedComments = [...storedComments, newComment];
       localStorage.setItem("comments", JSON.stringify(updatedComments));
-      setNewComment("");
+      setNewComment();
       setComments(updatedComments);
     }
   };
@@ -59,12 +58,17 @@ const Detail = () => {
       setComments(parsedComments);
       setNumComments(parsedComments.length);
     }
-  
+
     const storedNumHearts = localStorage.getItem("numHearts");
     if (storedNumHearts) {
       setNumHearts(Number(storedNumHearts));
     }
   }, []);
+  useEffect(() => {
+    // Lưu dữ liệu vào LocalStorage khi component unmount
+    localStorage.setItem("comments", JSON.stringify(comments));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [comments]);
 
   return (
     <div className={styles.cardDetail}>
@@ -81,7 +85,17 @@ const Detail = () => {
             </div>
           </div>
         </div>
-        <div className={styles.subTitle}>{comments}</div>
+        <div className={styles.subTitle}>
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a more- or-less normal distribution
+          of letters, as opposed to using 'Content here, content here', making
+          it look like readable English. Many desktop publishing packages and
+          web page editors now use Lorem Ipsum as their default model text, and
+          a search for 'lorem ipsum' will uncover many web sites still in their
+          infancy. Various versions have evolved over the years, sometimes by
+          accident, sometimes on purpose (injected humour and the like).
+        </div>
 
         <div className={styles.images}>
           <img src="./images/img_house.png" alt="image" />
@@ -115,11 +129,10 @@ const Detail = () => {
           {comments.map((comment, index) => (
             <div key={index} className={styles.commentDate}>
               <div className={styles.date}>{comment.postDateTime}</div>{" "}
-              <div className={styles.subTitle}>{comment.text}</div>
+              <div className={styles.subTitle}>{comment.newComment}</div>
             </div>
           ))}
         </div>
-
       </div>
 
       <div className={styles.comment}>
@@ -130,6 +143,7 @@ const Detail = () => {
               className={commentError ? styles.errorTextarea : ""}
               type="text"
               placeholder="Add comment"
+              value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               required
             />

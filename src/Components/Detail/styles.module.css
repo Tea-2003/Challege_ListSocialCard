@@ -12,6 +12,9 @@
   margin-bottom: 15px;
   gap: 15px;
 }
+.avt img{
+  border-radius: 50%;
+}
 
 .nameDate {
   display: flex;
