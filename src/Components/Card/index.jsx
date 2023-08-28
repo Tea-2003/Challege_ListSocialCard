@@ -4,7 +4,7 @@ import Nav from "../Nav";
 import Modal from "react-modal";
 import ModalAdd from "../ModalAdd";
 import ModalDelete from "../ModalDelete";
-import { getLocalData } from "../Data";
+import { getData, getlocalData } from "date-fns/getDate";
 import { format } from "date-fns";
 
 const customStyles = {
@@ -25,9 +25,10 @@ const customStyles = {
 
 const Card = () => {
   const [localData, setDataLocal] = useState(
-    JSON.parse(localStorage.getItem('Data')) || []
+    JSON.parse(localStorage.getItem("Data")) || []
   );
   // const [localData, setDataLocal] = useState(getLocalData());
+  const [cardData, setCardData] = useState([]);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = React.useState(false);
   const [editedData, setEditedData] = useState(null);
@@ -43,36 +44,20 @@ const Card = () => {
     localStorage.setItem("Data", JSON.stringify(data));
   };
 
-  const handleDeleteContent = (index) => {
-    // Make a copy of the dataLocal array so that it doesn't affect the state directly
-    const newDataLocal = [...localData];
-    newDataLocal.splice(index, 1);
+  const handleDelete = (index) => {
+    const newData = [...cardData];
+    newData.splice(index, 1); 
 
-    // Update Local Storage with array newDataLocal
-    localStorage.setItem("Data", JSON.stringify(localData));
-
-    // Update dataLocal state to cause page re-rendering
-    setDataLocal(newDataLocal);
-    closeDeleteModal();
-  };
-
-  const handleSave = (newCard) => {
-    const updatedData = [...localData, newCard];
-    setDataLocal(updatedData);
-    // Save updated data to localStorage using card.id as the key
-    localStorage.setItem("Data", JSON.stringify([...localData, newCard]));
+    setCardData(newData);
 
     closeModal();
   };
 
-  // useEffect(() => {
-  //   saveDataToLocalStorage(localData);
-  // }, [localData]);
   useEffect(() => {
-    // Lưu dữ liệu vào LocalStorage khi component unmount
-    localStorage.setItem("Data", JSON.stringify(localData));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [localData]);
+    // Retrieve data from localStorage
+    const storedData = JSON.parse(localStorage.getItem("Data")) || [];
+    setCardData(storedData);
+  }, []);
 
   // function Modal
   function openModal() {
@@ -101,11 +86,7 @@ const Card = () => {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <ModalAdd
-            closeModal={closeModal}
-            editedData={editedData}
-            handleSave={handleSave} // Pass the handleSave function to ModalAdd
-          ></ModalAdd>
+          <ModalAdd closeModal={closeModal} editedData={editedData}></ModalAdd>
         </Modal>
 
         <Modal
@@ -116,56 +97,60 @@ const Card = () => {
         >
           <ModalDelete
             closeModal={closeDeleteModal}
-            deleteContent={() => handleDeleteContent(deleteIndex)}
+            DeleteCard={() => handleDelete(deleteIndex)}
           ></ModalDelete>
         </Modal>
 
-        {localData.map((card) => (
-          <div key={card.id} className={styles.cardItem}>
-            <div className={styles.item}>
-              <a href="/Detail">
-                <div className={styles.avata}>
-                  <img src={card.avatar} alt={card.name} />
-                </div>
-                <div className={styles.nameDate}>
-                  <div className={styles.name}>{card.name}</div>
-                  <div className={styles.date}>
-                    {/* {card.date} */}
-                    {format(new Date(), "dd/MM/yyyy")}
+        {Array.isArray(cardData) && cardData.length > 0 ? (
+          cardData.map((card, index) => (
+            <div key={card.id} className={styles.cardItem}>
+              <div className={styles.item}>
+                <a href="/Detail">
+                  <div className={styles.avata}>
+                    <img src={card.avatar} alt={card.name} />
+                  </div>
+                  <div className={styles.nameDate}>
+                    <div className={styles.name}>{card.name}</div>
+                    <div className={styles.date}>
+                      {/* {card.date} */}
+                      {format(new Date(), "dd/MM/yyyy")}
+                    </div>
+                  </div>
+                </a>
+                <div className={styles.iconED}>
+                  <div className={styles.edit}>
+                    <img
+                      onClick={() => {
+                        setEditedData(card);
+                        openModal();
+                      }}
+                      src="./images/icon_edit.svg"
+                      alt="edit"
+                    />
+                  </div>
+                  <div className={styles.delete}>
+                    <img
+                      onClick={() => {
+                        setDeleteIndex(index);
+                        openDeleteModal();
+                      }}
+                      src="./images/icon_delete.svg"
+                      alt="icon_delete"
+                    />
                   </div>
                 </div>
+              </div>
+              <a href="/Detail">
+                <div className={styles.subTitle}>{card.description}</div>
+                <div className={styles.images}>
+                  <img src={card.images} alt="" />
+                </div>
               </a>
-              <div className={styles.iconED}>
-                <div className={styles.edit}>
-                  <img
-                    onClick={() => {
-                      setEditedData(card);
-                      openModal();
-                    }}
-                    src="./images/icon_edit.svg"
-                    alt="edit"
-                  />
-                </div>
-                <div className={styles.delete}>
-                  <img
-                    onClick={() => {
-                      setDeleteIndex(card.id);
-                      openDeleteModal();
-                    }}
-                    src="./images/icon_delete.svg"
-                    alt="icon_delete"
-                  />
-                </div>
-              </div>
             </div>
-            <a href="/Detail">
-              <div className={styles.subTitle}>{card.description}</div>
-              <div className={styles.images}>
-                <img src={card.image} alt="image" />
-              </div>
-            </a>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No cards available</p>
+        )}
       </div>
     </div>
   );

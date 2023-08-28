@@ -2,7 +2,7 @@ import styles from "./style.module.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const ModalAdd = ({ closeModal, setCardData, cardData }) => {
+const ModalAdd = ({ closeModal }) => {
   useEffect(() => {
     const form = document.getElementById("form-add");
     const profileImg = document.getElementById("profile-img");
@@ -40,105 +40,97 @@ const ModalAdd = ({ closeModal, setCardData, cardData }) => {
         });
         url.push(response.data.secure_url);
         console.log(url);
+        if (files === "avatar") {
+          setAvatar(url);
+        } else if (files === "images") {
+          setImages(url);
+        }
       }
       return url;
     }
   };
 
-  // const [uploadedAvataName, setUploadedAvataName] = useState(null);
-  // const [uploadedImageName, setUploadedImageName] = useState(null);
-  // const [uploadedName, setUploadedName] = useState(null);
-  // const [uploadedDesciptionName, setUploadedDesciptionName] = useState(null);
+  const initialCardData = JSON.parse(localStorage.getItem("Data")) || [];
 
-  // const [imagePreview, setImagePreview] = useState(null);
-
-  // const [hasUploadedAvata, setHasUploadedAvata] = useState(false);
-  // const [hasUploadedImage, setHasUploadedImage] = useState(false);
-  // const [hasUploadedName, setHasUploadedName] = useState(true);
-  // const [hasUploadedDesciption, setHasUploadedDesciption] = useState(true);
-
-  // const [avatar, setAvatar] = useState(null);
-  // const [name, setName] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [images, setImages] = useState([]);
-  // const [nameError, setNameError] = useState(false);
-
-  // const handleAvataUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     setUploadedAvataName(file.name);
-  //     setHasUploadedAvata(true);
-  //     setImagePreview(e.target.result);
-  //   } else {
-  //     setHasUploadedAvata(false);
-  //   }
-  // };
-
-  // const handleNameChange = (e) => {
-  //   const newName = e.target.value;
-  //   setHasUploadedName(newName.trim() !== "");
-  //   setNameError(newName === "");
-
-  //   setName(newName);
-  // };
-
-  // const handleDesciptionName = (e) => {
-  //   const newDescription = e.target.value;
-  //   setHasUploadedDesciption(newDescription.trim() !== "");
-  //   setDescriptionError(newDescription === "");
-  // };
-
-  // const handleImageUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     setUploadedImageName(file.name);
-  //     setHasUploadedImage(true);
-  //     setImagePreview(e.target.result);
-  //   } else {
-  //     setHasUploadedImage(false);
-  //   }
-  // };
-
-  // const handleImagesChange = (e) => {
-  //   const uploadedImages = e.target.files;
-  //   setImages(uploadedImages);
-  // };
-
-  // const handleValidation = () => {
-  //   setNameError(name === '');
-  // };
-
-  // const handleSave = async () => {
-  //   setNameError(name === "");
-  //   setDescriptionError(description === "");
-
-  //   if (
-  //     !name ||
-  //     !description ||
-  //     !uploadedImageNameProfile ||
-  //     !uploadedImageNameContent
-  //   ) {
-  //     return;
-  //   }
-  // }
-
+  const [cardData, setCardData] = useState(initialCardData);
   const [uploadedAvataName, setUploadedAvataName] = useState(null);
   const [uploadedImageName, setUploadedImageName] = useState(null);
   const [uploadedName, setUploadedName] = useState(null);
   const [uploadedDesciptionName, setUploadedDesciptionName] = useState(null);
 
-  const [avatar, setAvatar] = useState("");
+  const [errorAvatar, setErrorAvatar] = useState(false);
+  const [errorName, setErrorName] = useState(false);
+  const [errorDescription, setErrorDescription] = useState(false);
+  const [errorImages, setErrorImages] = useState(false);
+
+  const [avatar, setAvatar] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
+
+  const handleSave = (e) => {
+    e.preventDefault();
+
+    // Check for errors and set state error accordingly
+    if (!avatar.length) {
+      setErrorAvatar(true);
+    } else {
+      setErrorAvatar(false);
+    }
+
+    if (!name) {
+      setErrorName(true);
+    } else {
+      setErrorName(false);
+    }
+
+    if (!description) {
+      setErrorDescription(true);
+    } else {
+      setErrorDescription(false);
+    }
+
+    if (!images.length) {
+      setErrorImages(true);
+    } else {
+      setErrorImages(false);
+    }
+
+    // Check if there is no error then save data to localStorage
+    if (!errorAvatar && !errorName && !errorDescription && !errorImages) {
+      const newCard = {
+        avatar: avatar,
+        name: name,
+        description: description,
+        images: images,
+        id: new Date().getTime(),
+      };
+
+      const updatedCardData = [...cardData, newCard];
+      setCardData(updatedCardData);
+      saveDataToLocalStorage(updatedCardData);
+
+      closeModal();
+    }
+  };
+
+  // Function saveDataToLocalStorage
+  const saveDataToLocalStorage = (data, images) => {
+    localStorage.setItem("Data", JSON.stringify(data));
+
+    const imageUrls = JSON.parse(localStorage.getItem("ImageUrls")) || {};
+    const cardId = data[data.length - 1].id;
+    imageUrls[cardId] = images;
+    localStorage.setItem("ImageUrls", JSON.stringify(imageUrls));
+  };
 
   const handleAvataUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       setUploadedAvataName(file.name);
-      setAvatar(true);
+      uploadFiles([file], "avatar");
     } else {
-      setAvatar(false);
+      setAvatar([]);
     }
   };
 
@@ -151,30 +143,15 @@ const ModalAdd = ({ closeModal, setCardData, cardData }) => {
   };
 
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setUploadedImageName(file.name);
-      setImages(true);
+    const files = e.target.files;
+    if (files) {
+      const uploadedImageNames = Array.from(files).map((file) => file.name);
+      setUploadedImageName(uploadedImageNames.join(", "));
+      uploadFiles(files, "images");
     } else {
-      setImages(false);
+      setImages([]);
     }
   };
-
-  const handleSave = (e) => {
-    e.preventDefault();
-
-    const newCard = {
-      avatar: avatar.map((avatar) => avatar.name),
-      name: name,
-      description: description,
-      images: images.map((images) => images.name),
-      id: new Date().getTime(),
-    };
-
-    setCardData([...cardData, newCard]);
-    closeModal();
-  };
-
   return (
     <form action="" id="form-add">
       <div className={styles.modal}>

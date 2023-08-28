@@ -1,8 +1,8 @@
 import styles from "./styles.module.css";
 
-const ModalDelete = ({ closeModal, onDelete }) => {
+const ModalDelete = ({ closeModal, DeleteCard }) => {
   const handleDelete = () => {
-    onDelete();
+    DeleteCard();
     closeModal();
   };
   return (
