@@ -1,5 +1,6 @@
 import styles from "./style.module.css";
 import React, { useState, useEffect } from "react";
+import { updateCardData } from "../Card/dataUtils";
 import axios from "axios";
 
 const ModalAdd = ({ closeModal }) => {
@@ -110,6 +111,7 @@ const ModalAdd = ({ closeModal }) => {
       setCardData(updatedCardData);
       saveDataToLocalStorage(updatedCardData);
 
+      updateCardData(newCard, setDataLocal, saveDataToLocalStorage);
       closeModal();
     }
   };

@@ -6,7 +6,7 @@ import ModalAdd from "../ModalAdd";
 import ModalDelete from "../ModalDelete";
 import { getData, getlocalData } from "date-fns/getDate";
 import { format } from "date-fns";
-
+import Result from "../Result";
 const customStyles = {
   content: {
     top: "50%",
@@ -38,6 +38,7 @@ const Card = () => {
     const updatedData = [...localData, newCard];
     setDataLocal(updatedData);
     saveDataToLocalStorage(updatedData);
+    setCardData(updatedData);
   };
 
   const saveDataToLocalStorage = (data) => {
@@ -46,7 +47,7 @@ const Card = () => {
 
   const handleDelete = (index) => {
     const newData = [...cardData];
-    newData.splice(index, 1); 
+    newData.splice(index, 1);
 
     setCardData(newData);
 
@@ -143,13 +144,13 @@ const Card = () => {
               <a href="/Detail">
                 <div className={styles.subTitle}>{card.description}</div>
                 <div className={styles.images}>
-                  <img src={card.images} alt="" />
+                  <img src={card.images} alt="images"/>
                 </div>
               </a>
             </div>
           ))
         ) : (
-          <p>No cards available</p>
+          <Result />
         )}
       </div>
     </div>
