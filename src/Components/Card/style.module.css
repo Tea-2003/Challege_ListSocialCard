@@ -50,12 +50,12 @@ a {
   font-size: 14px;
 }
 
-.profile img{
- max-width: 50px;
- max-height: 50px;
+.profile img {
+  max-width: 50px;
+  max-height: 50px;
 }
 
-.img img{
+.img img {
   max-height: 175px;
   max-width: 310px;
 }
@@ -76,8 +76,7 @@ a {
   margin-bottom: 15px;
 }
 
-
-.content {
+.card {
   margin-bottom: 52px;
 }
 

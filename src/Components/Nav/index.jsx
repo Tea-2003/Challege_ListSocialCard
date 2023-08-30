@@ -17,7 +17,7 @@ const customStyles = {
   },
 };
 
-const Index = ({ onSearchChange }) => {
+const Nav = ({ onSearchChange }) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const handleSearchChange = (event) => {
@@ -70,4 +70,4 @@ const Index = ({ onSearchChange }) => {
   );
 };
 
-export default Index;
+export default Nav;

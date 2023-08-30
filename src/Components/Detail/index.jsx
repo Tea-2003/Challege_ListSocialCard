@@ -1,7 +1,7 @@
 import styles from "./style.module.css";
 import React, { useEffect, useState } from "react";
 
-const Index = ({ setShowContainer }) => {
+const Detail = ({ setShowContainer }) => {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -81,10 +81,7 @@ const Index = ({ setShowContainer }) => {
     <div className={styles.Container}>
       <div className={styles.Header}>SOCIAL CARD DETAIL</div>
       <div className={styles.ProfileDetail}>
-        <img
-          src='images/avt_varen.svg'
-          alt=''
-        />
+        <img src="images/avt_varen.svg" alt="" />
         <div>
           <div className={styles.ProfileName}>Binance</div>
           <div className={styles.DayCreate}>22/04/2021 (day create)</div>
@@ -102,21 +99,14 @@ const Index = ({ setShowContainer }) => {
         accident, sometimes on purpose (injected humour and the like).
       </div>
 
-      <img
-        className={styles.ContentImg}
-        src='images/img_house.png'
-        alt=''
-      />
+      <img className={styles.ContentImg} src="images/img_house.png" alt="" />
 
       <div className={styles.Icon}>
         <div
           className={styles.IconHeart}
           onClick={() => setHeartCount((prevCount) => prevCount + 1)}
         >
-          <img
-            src='images/icon_heart.svg'
-            alt=''
-          />
+          <img src="images/icon_heart.svg" alt="" />
           {heartCount}
         </div>
 
@@ -124,10 +114,7 @@ const Index = ({ setShowContainer }) => {
           className={styles.IconMessage}
           onClick={() => isCommentPosted && setMessageCount(messageCount + 1)}
         >
-          <img
-            src='images/icon_comment.svg'
-            alt=''
-          />
+          <img src="images/icon_comment.svg" alt="" />
           {messageCount}
         </div>
       </div>
@@ -158,13 +145,13 @@ const Index = ({ setShowContainer }) => {
           className={`${styles.CommentTextarea} ${
             commentError ? styles.errorPost : ""
           }`}
-          type='text'
-          placeholder=' Add comment...'
+          type="text"
+          placeholder=" Add comment..."
         />
 
         <button
           className={styles.BtnPost}
-          type='submit'
+          type="submit"
           onClick={handlePostClick}
         >
           Post
@@ -174,4 +161,4 @@ const Index = ({ setShowContainer }) => {
   );
 };
 
-export default Index;
+export default Detail;

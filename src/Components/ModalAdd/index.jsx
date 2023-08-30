@@ -52,7 +52,6 @@ const Index = ({ closeModal }) => {
     };
   }, []);
 
-
   const uploadFiles = async (files) => {
     if (files) {
       const CLOUD_NAME = "dn7lgsdd1";
@@ -228,9 +227,7 @@ const Index = ({ closeModal }) => {
                     ></textarea>
                   </div>
 
-                  <div
-                    className={`${styles.cardAvatar} ${styles.cardImg}`}
-                  >
+                  <div className={`${styles.cardAvatar} ${styles.cardImg}`}>
                     <label
                       htmlFor="upload-card"
                       className={`${styles.uploadLabel} ${

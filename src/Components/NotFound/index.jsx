@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./style.module.css"
 
-const index = () => {
+const Notfound = () => {
   return (
     <div className={styles.searchUndefined}>
     <img
@@ -18,4 +18,4 @@ const index = () => {
   )
 }
 
-export default index;
+export default Notfound;

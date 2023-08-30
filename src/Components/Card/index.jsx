@@ -21,7 +21,7 @@ const customStyles = {
   },
 };
 
-const Index = ({ searchTerm }) => {
+const Card = ({ searchTerm }) => {
   const dataLocal = getLocalData();
 
   //Search
@@ -32,7 +32,6 @@ const Index = ({ searchTerm }) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = React.useState(false); // Add state for delete modal
   const [editedData, setEditedData] = useState(null);
-  
 
   function openModal() {
     setIsOpen(true);
@@ -71,7 +70,7 @@ const Index = ({ searchTerm }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel='Example Modal'
+        contentLabel="Example Modal"
       >
         <ModalUpdate
           closeModal={closeModal}
@@ -83,30 +82,24 @@ const Index = ({ searchTerm }) => {
         isOpen={modalDeleteIsOpen}
         onRequestClose={closeDeleteModal}
         style={customStyles}
-        contentLabel='Delete Modal'
+        contentLabel="Delete Modal"
       >
         <ModalDelete
           closeModal={closeDeleteModal}
           deleteContent={() => handleDeleteContent(deleteIndex)}
         ></ModalDelete>
       </Modal>
-      
+
       <div className={styles.body}>
         {filteredData.length === 0 && searchTerm !== "" ? (
           <NotFound />
         ) : (
           filteredData.map((item, index) => (
-            <div
-              className={styles.card}
-              key={index}
-            >
+            <div className={styles.card} key={index}>
               <div className={styles.header}>
-                <a href='./Detail'>
+                <a href="./Detail">
                   <div className={styles.profile}>
-                    <img
-                      src={item.Profile}
-                      alt={item.Name}
-                    />
+                    <img src={item.Profile} alt={item.Name} />
                     <div>
                       <div className={styles.name}>{item.name} </div>
                       <div className={styles.birthday}>
@@ -122,23 +115,23 @@ const Index = ({ searchTerm }) => {
                         setEditedData(item);
                         openModal();
                       }}
-                      src='images/icon_edit.svg'
-                      alt='Edit'
+                      src="images/icon_edit.svg"
+                      alt="edit"
                     />
                   </div>
                   <div className={styles.deleteIcon}>
                     <img
                       onClick={() => {
-                        openDeleteModal(); 
+                        openDeleteModal();
                         setDeleteIndex(index);
                       }}
-                      src='images/icon_delete.svg'
-                      alt='Delete'
+                      src="images/icon_delete.svg"
+                      alt="delete"
                     />
                   </div>
                 </div>
               </div>
-              <a href='./Detail'>
+              <a href="./Detail">
                 <div
                   className={`${styles.description} ${
                     index === 2 ? styles.descriptionMio : ""
@@ -147,10 +140,7 @@ const Index = ({ searchTerm }) => {
                   {item.description}
                 </div>
                 <div className={styles.img}>
-                  <img
-                    src={item.img}
-                    alt='img'
-                  />
+                  <img src={item.img} alt="img" />
                 </div>
               </a>
             </div>
@@ -161,4 +151,4 @@ const Index = ({ searchTerm }) => {
   );
 };
 
-export default Index;
+export default Card;
