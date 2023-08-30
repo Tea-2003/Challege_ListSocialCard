@@ -1,62 +1,96 @@
-.cards {
+.body {
+  gap: 88px;
   display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
   flex-wrap: wrap;
-  justify-content: space-around;
-}
-.cardItem {
-  max-width: 310px;
-  padding: 30px;
-}
-.item {
-  display: flex;
-  padding-bottom: 15px;
+  max-width: 1106px;
+  margin: 0 auto;
 }
 
-.item a{
-  display: flex;
-}
-.avata {
-  padding-right: 15px;
-}
-.nameDate {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
+.card {
+  width: 310px;
   cursor: pointer;
+  text-decoration: none;
 }
-.name {
-  color: #000;
 
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 24px;
-}
-.date {
-  color: #5b7083;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22.5px;
-}
-.iconED {
-  display: flex;
-  gap: 17px;
-  padding-left: 121px;
-  cursor: pointer;
-}
-.subTitle {
-  padding-bottom: 15px;
-  color: #000;
-  font-size: 15px;
-  line-height: 20px;
-  cursor: pointer;
-}
 a {
   text-decoration: none;
 }
 
+.header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile {
+  color: #000;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+.profile img {
+  margin-right: 15px;
+}
+
+.profile,
+.editIcon,
+.deleteIcon {
+  cursor: pointer;
+}
+
+.profile .birthday {
+  margin-top: 4px;
+  color: #5b7083;
+  font-size: 14px;
+}
+
+.profile img{
+ max-width: 50px;
+ max-height: 50px;
+}
+
+.img img{
+  max-height: 175px;
+  max-width: 310px;
+}
+
+.editIcon {
+  margin-right: 17px;
+}
+
+.header .icon {
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+
+.content {
+  margin-bottom: 52px;
+}
+
 @media (max-width: 768px) {
-  .cards {
-    display: inline-block;
+  .body {
+    gap: 30px;
+    margin: 0 20px;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .body {
+    margin: 0 auto;
   }
 }

@@ -1,160 +1,177 @@
-import React, { useState, useEffect } from "react";
-import styles from "./styles.module.css";
+import styles from "./style.module.css";
+import React, { useEffect, useState } from "react";
 
-const Detail = () => {
-  const [numHearts, setNumHearts] = useState(0);
-  const [numComments, setNumComments] = useState(0);
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
+const Index = ({ setShowContainer }) => {
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handlePostClick();
+    }
+  };
+
+  useEffect(() => {
+    setShowContainer(false);
+    return () => {
+      setShowContainer(true);
+    };
+  }, [setShowContainer]);
+
+  useEffect(() => {
+    const existingComments = JSON.parse(
+      localStorage.getItem("comments") || "[]"
+    );
+    setMessageCount(existingComments.length);
+  }, []);
+
   const [commentError, setCommentError] = useState(false);
 
-  const increaseHearts = () => {
-    setNumHearts(numHearts + 1);
-
-    localStorage.setItem("numHearts", numHearts + 1);
+  const [inputComment, setInputComment] = useState("");
+  const handleCommentChange = (event) => {
+    const value = event.target.value;
+    setInputComment(value); // Use the variable newComment
+    setCommentError(value === "");
   };
-  const handlePostComment = () => {
-    if (newComment.trim() !== "") {
-      const currentDateTime = new Date();
-      const options = {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
+
+  const handlePostClick = () => {
+    if (!commentError && inputComment !== "") {
+      setIsCommentPosted(true);
+
+      // Save comments to local storage
+      const currentDate = new Date();
+      const formattedDate = `${currentDate.getDate()}/${
+        currentDate.getMonth() + 1
+      }/${currentDate.getFullYear()}`;
+      const newComment = {
+        dayCreate: formattedDate,
+        content: inputComment,
       };
-      const formattedDateTime = currentDateTime.toLocaleString(
-        undefined,
-        options
+
+      // Get the list of comments from local storage (if any)
+      const existingComments = JSON.parse(
+        localStorage.getItem("comments") || "[]"
       );
 
-      const updatedComments = [
-        ...comments,
-        { text: newComment, postDateTime: formattedDateTime },
-      ];
+      // Add a new comment to the list
+      existingComments.push(newComment);
 
-      setComments(updatedComments);
-      setNumComments(updatedComments.length); // Save the date and time of the post
+      // Save the comment list to local storage
+      localStorage.setItem("comments", JSON.stringify(existingComments));
 
-      localStorage.setItem("comments", JSON.stringify(updatedComments));
-      setNewComment();
-
-      setCommentError(true);
-    } else {
+      // Update the number of comments and perform other processing when the post is successful
+      setMessageCount(existingComments.length);
       setCommentError(false);
-
-      const storedComments = JSON.parse(localStorage.getItem("comments")) || [];
-      const updatedComments = [...storedComments, newComment];
-      localStorage.setItem("comments", JSON.stringify(updatedComments));
-      setNewComment();
-      setComments(updatedComments);
+      setInputComment("");
+    } else {
+      setIsCommentPosted(false);
+      setCommentError(true);
     }
   };
 
-  useEffect(() => {
-    const storedComments = localStorage.getItem("comments");
-    if (storedComments) {
-      const parsedComments = JSON.parse(storedComments);
-      setComments(parsedComments);
-      setNumComments(parsedComments.length);
-    }
+  const [heartCount, setHeartCount] = useState(
+    parseInt(localStorage.getItem("heartCount")) || 0
+  );
+  const [messageCount, setMessageCount] = useState();
+  const [isCommentPosted, setIsCommentPosted] = useState(false);
 
-    const storedNumHearts = localStorage.getItem("numHearts");
-    if (storedNumHearts) {
-      setNumHearts(Number(storedNumHearts));
-    }
-  }, []);
   useEffect(() => {
-    // Lưu dữ liệu vào LocalStorage khi component unmount
-    localStorage.setItem("comments", JSON.stringify(comments));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [comments]);
+    localStorage.setItem("heartCount", heartCount);
+  }, [heartCount]);
 
   return (
-    <div className={styles.cardDetail}>
-      <div className={styles.title}>SOCIAL CARD DETAIL</div>
-      <div className={styles.cardItem}>
-        <div className={styles.item}>
-          <div className={styles.avata}>
-            <div className={styles.avt}>
-              <img src="./images/avt_varen.svg" alt="avt" />
-            </div>
-            <div className={styles.nameDate}>
-              <div className={styles.name}>Binance</div>
-              <div className={styles.date}>22/04/2021 (day create)</div>
-            </div>
-          </div>
+    <div className={styles.Container}>
+      <div className={styles.Header}>SOCIAL CARD DETAIL</div>
+      <div className={styles.ProfileDetail}>
+        <img
+          src='images/avt_varen.svg'
+          alt=''
+        />
+        <div>
+          <div className={styles.ProfileName}>Binance</div>
+          <div className={styles.DayCreate}>22/04/2021 (day create)</div>
         </div>
-        <div className={styles.subTitle}>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more- or-less normal distribution
-          of letters, as opposed to using 'Content here, content here', making
-          it look like readable English. Many desktop publishing packages and
-          web page editors now use Lorem Ipsum as their default model text, and
-          a search for 'lorem ipsum' will uncover many web sites still in their
-          infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).
-        </div>
+      </div>
+      <div className={styles.Content}>
+        It is a long established fact that a reader will be distracted by the
+        readable content of a page when looking at its layout. The point of
+        using Lorem Ipsum is that it has a more- or-less normal distribution of
+        letters, as opposed to using 'Content here, content here', making it
+        look like readable English. Many desktop publishing packages and web
+        page editors now use Lorem Ipsum as their default model text, and a
+        search for 'lorem ipsum' will uncover many web sites still in their
+        infancy. Various versions have evolved over the years, sometimes by
+        accident, sometimes on purpose (injected humour and the like).
+      </div>
 
-        <div className={styles.images}>
-          <img src="./images/img_house.png" alt="image" />
-        </div>
+      <img
+        className={styles.ContentImg}
+        src='images/img_house.png'
+        alt=''
+      />
 
-        <div className={styles.icon}>
-          <div className={styles.iconHeart} onClick={increaseHearts}>
-            <div>
-              <img
-                className={styles.heart}
-                src="./images/icon_heart.svg"
-                alt="icon_heart"
-              />
-            </div>
-            <div>{numHearts}</div>
-          </div>
-
-          <div className={styles.iconComment}>
-            <div>
-              <img
-                className={styles.com}
-                src="./images/icon_comment.svg"
-                alt="icon_comment"
-              />
-            </div>
-            <div>{numComments}</div>
-          </div>
+      <div className={styles.Icon}>
+        <div
+          className={styles.IconHeart}
+          onClick={() => setHeartCount((prevCount) => prevCount + 1)}
+        >
+          <img
+            src='images/icon_heart.svg'
+            alt=''
+          />
+          {heartCount}
         </div>
 
-        <div className={styles.listComment}>
-          {comments.map((comment, index) => (
-            <div key={index} className={styles.commentDate}>
-              <div className={styles.date}>{comment.postDateTime}</div>{" "}
-              <div className={styles.subTitle}>{comment.newComment}</div>
-            </div>
-          ))}
+        <div
+          className={styles.IconMessage}
+          onClick={() => isCommentPosted && setMessageCount(messageCount + 1)}
+        >
+          <img
+            src='images/icon_comment.svg'
+            alt=''
+          />
+          {messageCount}
         </div>
       </div>
 
-      <div className={styles.comment}>
-        <div className={styles.postTile}>Post new comment</div>
-        <div className={styles.newComment}>
-          <div className={styles.addComment}>
-            <textarea
-              className={commentError ? styles.errorTextarea : ""}
-              type="text"
-              placeholder="Add comment"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              required
-            />
-          </div>
-          <div className={styles.btnPost} onClick={handlePostComment}>
-            Post
-          </div>
-        </div>
+      <div>
+        {localStorage.getItem("comments") &&
+          JSON.parse(localStorage.getItem("comments"))
+            .reverse()
+            .map((comment, index) => (
+              <div
+                className={`${styles.Comment} ${styles.ContentComment}`}
+                key={index}
+              >
+                <div className={styles.DayCreate}>
+                  {comment.dayCreate} (day create)
+                </div>
+                <div className={styles.Content}>{comment.content}</div>
+              </div>
+            ))}
+      </div>
+
+      <div className={styles.PostComment}>
+        <div className={styles.TextPost}>Post a new coment</div>
+        <textarea
+          onKeyDown={handleKeyPress}
+          value={inputComment}
+          onChange={handleCommentChange}
+          className={`${styles.CommentTextarea} ${
+            commentError ? styles.errorPost : ""
+          }`}
+          type='text'
+          placeholder=' Add comment...'
+        />
+
+        <button
+          className={styles.BtnPost}
+          type='submit'
+          onClick={handlePostClick}
+        >
+          Post
+        </button>
       </div>
     </div>
   );
 };
 
-export default Detail;
+export default Index;

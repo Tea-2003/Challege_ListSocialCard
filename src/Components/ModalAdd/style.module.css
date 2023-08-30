@@ -1,122 +1,133 @@
 .modal {
-  width: 100%;
-  color: #ffffff;
-  padding: 24px 58px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.modalCard {
+  width: 514px;
+  margin: 0 auto;
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #d2cbcb;
   border-radius: 10px;
 }
 
-.title {
-  color: #000;
+.mainCard {
+  margin: 25px 43px 25px 45px;
+}
+
+.modalHeader {
   text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 27px;
+  font: normal normal bold 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
   margin-bottom: 40px;
 }
-.bodyCard {
+
+.cardText li {
+  list-style: none;
+  margin-bottom: 27px;
+  font: normal normal normal 16px/21px Segoe UI;
+}
+
+.cardText li:nth-child(-n + 3)::after {
+  content: "*";
+  color: #f3115e;
+}
+
+.cardText li:nth-child(2) {
+  margin-bottom: 34px;
+}
+
+.modalBody {
+  max-height: 197px;
+  justify-content: space-between;
+  display: flex;
   border-bottom: 1px solid #d9d9d9;
-  margin-bottom: 20px;
-}
-.avata {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 46px;
-}
-.avataTextarea {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.avt {
-  color: #000;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 21px;
 }
 
-.uploading {
+.mainCard .cardAvatar {
+  display: flex;
+  margin-bottom: 20px;
+  max-width: 322px;
+  overflow: hidden;
+}
+
+.cardAvatar label {
+  display: flex;
+}
+
+.cardInput input {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
   width: 100%;
+  box-sizing: border-box;
+  min-width: 322px;
+  padding: 5px 6px;
+  outline: none;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cardInput textarea {
+  overflow: hidden;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 322px;
+  outline: none;
+  font-size: 18px;
+  max-height: 34px;
+  padding: 5px 6px;
+  margin-bottom: 16px;
+}
+
+.cardAvatar img {
+  margin-right: 11px;
+}
+
+.cardAvatar img:hover {
   cursor: pointer;
 }
 
-.uploading span {
-  color: #000;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 21px;
-  padding-left: 11px;
-}
-
-.uploading input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  outline: none;
-  border: 1px solid#D9D9D9;
-  border-radius: 5px;
-}
-.uploadingTextarea {
-  padding-left: 8px;
-  width: 100%;
-}
-textarea {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid#D9D9D9;
-  outline: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 400;
-}
-.uploading input[type="text"],
-.uploadingTextarea textarea {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  color: #000;
-}
-
-.uploading input[type="text"]:invalid,
-.uploadingTextarea textarea:invalid {
-  border-color: red;
-}
-
-.errorText {
-  color: #f3115e;
-  filter: brightness(0) saturate(100%) invert(59%) sepia(96%) saturate(6764%)
-    hue-rotate(338deg) brightness(99%) contrast(98%);
-}
-
-.errorName {
-  color: #f3115e;
-}
-
-.button {
+.btn {
   display: flex;
+  color: #ffffff;
   justify-content: end;
-  gap: 20px;
+  margin-right: 43px;
+  margin-bottom: 19px;
 }
-.btnSave {
+
+.saveBtn button {
+  background: #064ebc 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
   padding: 13px 24px;
-  background: #064ebc;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: bold;
-  color: #fff;
-  border: none;
+  font: normal normal bold 13px/17px Segoe UI;
+  margin-right: 20px;
+  border-width: 0px;
+  color: #ffffff;
 }
-.btnCancel {
-  padding: 13px 18px;
-  background: #d9d9d9;
-  border-radius: 10px;
+
+.saveBtn button:hover {
   cursor: pointer;
-  font-size: 13px;
-  font-weight: bold;
+}
+
+.cancelBtn {
+  background: #d9d9d9 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font: normal normal bold 13px/17px Segoe UI;
+}
+
+.saveBtn,
+.cancelBtn {
+  cursor: pointer;
 }
 
 .hiddenInput {
@@ -126,26 +137,112 @@ textarea {
 .uploadLabel {
   display: inline-block;
   cursor: pointer;
-  position: relative;
 }
-.uploadingInput {
-  opacity: 0;
-  position: absolute;
-  left: 118px;
+
+.errorText {
+  color: #f3115e;
+  filter: brightness(0) saturate(100%) invert(59%) sepia(96%) saturate(6764%)
+    hue-rotate(338deg) brightness(99%) contrast(98%);
+}
+
+.errorInput input,
+.errorInput textarea {
+  border-color: #f3115e;
+}
+
+.fileNameInput {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* CSS card Delete */
+.deleteBody {
+  display: block;
+  text-align: center;
+  font: normal normal normal 16px/21px Segoe UI;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.deleteBody img {
+  padding-bottom: 16px;
+  display: flex;
+  margin: 0 auto;
+}
+
+.deleteBody img:hover {
   cursor: pointer;
 }
 
+.decriptionDelete {
+  margin-bottom: 20px;
+}
+
 @media (max-width: 768px) {
-  .modal {
-    margin: 0;
-    width: 260px;
+  .modalCard {
+    width: auto;
   }
-  .uploading input {
-    width: 100%;
-    padding: 12px;
+
+  .modalHeader {
+    margin-bottom: 25px;
   }
-  textarea {
-    width: 100%;
-    padding: 12px;
+
+  .cardText li {
+    font: normal normal normal 17px/21px Segoe UI;
+    margin-bottom: 42px;
+  }
+
+  .modalBody {
+    max-height: 100%;
+    position: relative;
+  }
+
+  .cardAvatar {
+    position: absolute;
+    top: 27px;
+    left: 0px;
+  }
+
+  .cardImg {
+    position: absolute;
+    top: 235px;
+    left: 0px;
+  }
+
+  .cardInput input {
+    position: absolute;
+    top: 83px;
+    left: 0;
+    min-width: 0;
+    font-size: 20px;
+    padding: 8px 6px;
+  }
+
+  .cardInput textarea {
+    position: absolute;
+    top: 161px;
+    left: 0;
+    font-size: 20px;
+    min-width: 0;
+    padding: 9px 6px;
+    max-height: 46px;
+  }
+
+  .cardText li:nth-child(3) {
+    margin-bottom: 56px;
+  }
+
+  .cardText li:nth-child(2) {
+    margin-bottom: 50px;
+  }
+
+  .btn {
+    margin-right: 90px;
+    margin-left: 90px;
+  }
+
+  .mainCard {
+    margin: 25px 33px 25px;
   }
 }

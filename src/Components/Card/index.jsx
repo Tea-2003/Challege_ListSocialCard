@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./style.module.css";
-import Nav from "../Nav";
+import { getLocalData } from "../Data";
 import Modal from "react-modal";
-import ModalAdd from "../ModalAdd";
+import ModalUpdate from "../ModalUpdate";
 import ModalDelete from "../ModalDelete";
-import { getData, getlocalData } from "date-fns/getDate";
 import { format } from "date-fns";
-import Result from "../Result";
+import NotFound from "../NotFound";
 const customStyles = {
   content: {
     top: "50%",
@@ -17,50 +16,24 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     padding: "0px",
     border: "none",
+    boxShadow: "none",
     background: "none",
-    boxshadow: "none",
-    overflow: "initial",
   },
 };
 
-const Card = () => {
-  const [localData, setDataLocal] = useState(
-    JSON.parse(localStorage.getItem("Data")) || []
+const Index = ({ searchTerm }) => {
+  const dataLocal = getLocalData();
+
+  //Search
+  const filteredData = dataLocal.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  // const [localData, setDataLocal] = useState(getLocalData());
-  const [cardData, setCardData] = useState([]);
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [modalDeleteIsOpen, setModalDeleteIsOpen] = React.useState(false);
+  const [modalDeleteIsOpen, setModalDeleteIsOpen] = React.useState(false); // Add state for delete modal
   const [editedData, setEditedData] = useState(null);
-  const [deleteIndex, setDeleteIndex] = React.useState(null);
+  
 
-  const updateCardData = (newCard) => {
-    const updatedData = [...localData, newCard];
-    setDataLocal(updatedData);
-    saveDataToLocalStorage(updatedData);
-    setCardData(updatedData);
-  };
-
-  const saveDataToLocalStorage = (data) => {
-    localStorage.setItem("Data", JSON.stringify(data));
-  };
-
-  const handleDelete = (index) => {
-    const newData = [...cardData];
-    newData.splice(index, 1);
-
-    setCardData(newData);
-
-    closeModal();
-  };
-
-  useEffect(() => {
-    // Retrieve data from localStorage
-    const storedData = JSON.parse(localStorage.getItem("Data")) || [];
-    setCardData(storedData);
-  }, []);
-
-  // function Modal
   function openModal() {
     setIsOpen(true);
   }
@@ -77,84 +50,115 @@ const Card = () => {
     setModalDeleteIsOpen(false);
   }
 
+  const [deleteIndex, setDeleteIndex] = React.useState(null);
+  const handleDeleteContent = async (index) => {
+    // Make a copy of the dataLocal array so that it doesn't affect the state directly
+    const newDataLocal = [...dataLocal];
+    newDataLocal.splice(index, 1);
+
+    // Update Local Storage with array newDataLocal
+    localStorage.setItem("cardData", JSON.stringify(newDataLocal));
+
+    // Update dataLocal state to cause page re-rendering
+    setDeleteIndex(newDataLocal);
+
+    closeDeleteModal();
+  };
+
   return (
-    <div>
-      <Nav />
-      <div className={styles.cards}>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <ModalAdd closeModal={closeModal} editedData={editedData}></ModalAdd>
-        </Modal>
+    <div className={styles.body}>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel='Example Modal'
+      >
+        <ModalUpdate
+          closeModal={closeModal}
+          editedData={editedData}
+        ></ModalUpdate>
+      </Modal>
 
-        <Modal
-          isOpen={modalDeleteIsOpen}
-          onRequestClose={closeDeleteModal}
-          style={customStyles}
-          contentLabel="Delete Modal"
-        >
-          <ModalDelete
-            closeModal={closeDeleteModal}
-            DeleteCard={() => handleDelete(deleteIndex)}
-          ></ModalDelete>
-        </Modal>
-
-        {Array.isArray(cardData) && cardData.length > 0 ? (
-          cardData.map((card, index) => (
-            <div key={card.id} className={styles.cardItem}>
-              <div className={styles.item}>
-                <a href="/Detail">
-                  <div className={styles.avata}>
-                    <img src={card.avatar} alt={card.name} />
-                  </div>
-                  <div className={styles.nameDate}>
-                    <div className={styles.name}>{card.name}</div>
-                    <div className={styles.date}>
-                      {/* {card.date} */}
-                      {format(new Date(), "dd/MM/yyyy")}
+      <Modal
+        isOpen={modalDeleteIsOpen}
+        onRequestClose={closeDeleteModal}
+        style={customStyles}
+        contentLabel='Delete Modal'
+      >
+        <ModalDelete
+          closeModal={closeDeleteModal}
+          deleteContent={() => handleDeleteContent(deleteIndex)}
+        ></ModalDelete>
+      </Modal>
+      
+      <div className={styles.body}>
+        {filteredData.length === 0 && searchTerm !== "" ? (
+          <NotFound />
+        ) : (
+          filteredData.map((item, index) => (
+            <div
+              className={styles.card}
+              key={index}
+            >
+              <div className={styles.header}>
+                <a href='./Detail'>
+                  <div className={styles.profile}>
+                    <img
+                      src={item.Profile}
+                      alt={item.Name}
+                    />
+                    <div>
+                      <div className={styles.name}>{item.name} </div>
+                      <div className={styles.birthday}>
+                        {format(new Date(), "dd/MM/yyyy")}
+                      </div>
                     </div>
                   </div>
                 </a>
-                <div className={styles.iconED}>
-                  <div className={styles.edit}>
+                <div className={styles.icon}>
+                  <div className={styles.editIcon}>
                     <img
                       onClick={() => {
-                        setEditedData(card);
+                        setEditedData(item);
                         openModal();
                       }}
-                      src="./images/icon_edit.svg"
-                      alt="edit"
+                      src='images/icon_edit.svg'
+                      alt='Edit'
                     />
                   </div>
-                  <div className={styles.delete}>
+                  <div className={styles.deleteIcon}>
                     <img
                       onClick={() => {
+                        openDeleteModal(); 
                         setDeleteIndex(index);
-                        openDeleteModal();
                       }}
-                      src="./images/icon_delete.svg"
-                      alt="icon_delete"
+                      src='images/icon_delete.svg'
+                      alt='Delete'
                     />
                   </div>
                 </div>
               </div>
-              <a href="/Detail">
-                <div className={styles.subTitle}>{card.description}</div>
-                <div className={styles.images}>
-                  <img src={card.images} alt="images"/>
+              <a href='./Detail'>
+                <div
+                  className={`${styles.description} ${
+                    index === 2 ? styles.descriptionMio : ""
+                  }`}
+                >
+                  {item.description}
+                </div>
+                <div className={styles.img}>
+                  <img
+                    src={item.img}
+                    alt='img'
+                  />
                 </div>
               </a>
             </div>
           ))
-        ) : (
-          <Result />
         )}
       </div>
     </div>
   );
 };
 
-export default Card;
+export default Index;

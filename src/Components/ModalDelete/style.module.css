@@ -1,0 +1,128 @@
+.modal {
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.modalCard {
+  width: 514px;
+  margin: 0 auto;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #d2cbcb;
+  border-radius: 10px;
+}
+
+.mainCard {
+  margin: 25px 43px 25px 45px;
+}
+
+.modalHeader {
+  text-align: center;
+  font: normal normal bold 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  margin-bottom: 40px;
+}
+
+.modalBody {
+  max-height: 197px;
+  justify-content: space-between;
+  display: flex;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.mainContent .ContentAvatar {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.cardInput input {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 322px;
+  padding: 8px 6px;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.cardInput textarea {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 322px;
+  outline: none;
+  max-height: 35px;
+  padding: 8px 6px;
+  margin-bottom: 16px;
+}
+
+.contentAvatar img {
+  margin-right: 11px;
+}
+
+.contentAvatar img:hover {
+  cursor: pointer;
+}
+
+.btn {
+  display: flex;
+  color: #ffffff;
+  justify-content: end;
+  margin-right: 43px;
+  margin-bottom: 19px;
+}
+.saveBtn {
+  background: #064ebc 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font: normal normal bold 13px/17px Segoe UI;
+  margin-right: 20px;
+}
+
+.cancelBtn {
+  background: #d9d9d9 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font: normal normal bold 13px/17px Segoe UI;
+}
+
+.saveBtn,
+.cancelBtn {
+  cursor: pointer;
+}
+
+/* CSS card Delete */
+
+.deleteBody {
+  display: block;
+  text-align: center;
+  font: normal normal normal 16px/21px ;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.deleteBody img {
+  padding-bottom: 16px;
+}
+
+.deleteBody img:hover {
+  cursor: pointer;
+}
+
+.decriptionDelete {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .modalCard {
+    width: initial;
+  }
+}

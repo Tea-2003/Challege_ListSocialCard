@@ -1,8 +1,7 @@
-import React from "react";
-import styles from "./styles.module.css";
+import styles from "./style.module.css";
 import Modal from "react-modal";
+import React from "react";
 import ModalAdd from "../ModalAdd";
-
 const customStyles = {
   content: {
     top: "50%",
@@ -13,53 +12,62 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     padding: "0px",
     border: "none",
-    background: "none",
     boxShadow: "none",
-    overflow: "initial",
+    background: "none",
   },
 };
-const Nav = () => {
+
+const Index = ({ onSearchChange }) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  const handleSearchChange = (event) => {
+    const searchTerm = event.target.value;
+    onSearchChange(searchTerm);  // Submit search data to the parent component
+  };
 
   function openModal() {
     setIsOpen(true);
   }
+
   function closeModal() {
     setIsOpen(false);
   }
 
   return (
-    <>
+    <div>
+      <div className={styles.nav}>
+        <div
+          className={styles.btnAdd}
+          onClick={openModal}
+        >
+          Add new
+        </div>
+        <div className={styles.search}>
+          <div className={styles.searchName}>
+            <input
+              type='text'
+              placeholder='Search name...'
+              onChange={handleSearchChange}
+            />
+          </div>
+          <div className={styles.iconSearch}>
+            <img
+              src='images/icon_search.svg'
+              alt=''
+            />
+          </div>
+        </div>
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel='Example Modal'
       >
         <ModalAdd closeModal={closeModal}></ModalAdd>
       </Modal>
-
-      <div className={styles.header}>
-        <div className={styles.title}>list social card</div>
-      </div>
-
-      <div className={styles.navigation}>
-        <div className={styles.btn} onClick={openModal}>
-          Add New
-        </div>
-        <div className={styles.search}>
-          <input
-            type="text"
-            placeholder="Search Name..."
-            
-          />
-          <span>
-            <img src="images/icon_search.svg" alt="icon_search" />
-          </span>
-        </div>
-  
-      </div>
-    </>
+    </div>
   );
 };
-export default Nav;
+
+export default Index;

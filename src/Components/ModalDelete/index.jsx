@@ -1,34 +1,44 @@
-import styles from "./styles.module.css";
+import React from "react";
+import styles from "./style.module.css";
 
-const ModalDelete = ({ closeModal, DeleteCard }) => {
-  const handleDelete = () => {
-    DeleteCard();
-    closeModal();
-  };
+const index = ({ closeModal, deleteContent }) => {
   return (
-    <div className={styles.modal}>
-      <div className={styles.cardDelete}>
-        <div className={styles.title}>Your about to delete a item</div>
-        <div className={styles.bodyCard}>
-          <div className={styles.iconDelete}>
-            <img src="./images/icon_delete.svg" alt="icon_delete" />
+    <div className={styles.deleteCard}>
+      <div className={styles.modal}>
+        <div className={styles.modalCard}>
+          <div className={styles.mainCard}>
+            <div className={styles.modalHeader}>
+              Your about to delete a item
+            </div>
+            <div className={`${styles.modalBody} ${styles.deleteBody}`}>
+              <img
+                src='images/icon_delete.svg'
+                alt=''
+              />
+              <div className={styles.decriptionDelete}>
+                This will delete your item form list<br></br> Are you sure?
+              </div>
+            </div>
           </div>
-          <div className={styles.subTitle}>
-            This will delete your item form list <br />
-            Are you sure?
+
+          <div className={styles.btn}>
+            <div
+              className={styles.saveBtn}
+              onClick={deleteContent}
+            >
+              Delete
+            </div>
+            <div
+              className={styles.cancelBtn}
+              onClick={closeModal}
+            >
+              Cancel
+            </div>
           </div>
-        </div>
-      </div>
-      <div className={styles.button}>
-        <div className={styles.btnSave} onClick={handleDelete}>
-          Delete
-        </div>
-        <div className={styles.btnCancel} onClick={closeModal}>
-          Cancel
         </div>
       </div>
     </div>
   );
 };
 
-export default ModalDelete;
+export default index;
